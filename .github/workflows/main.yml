@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 env:
   AWS_REGION: 'ap-south-1'
-  S3_BUCKET: 'meta-tags-test'
+  S3_BUCKET: 'rvj-123'
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
  
 permissions:
