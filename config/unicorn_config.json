@@ -1,0 +1,46 @@
+{
+  "workers": [
+    {
+      "id": "products_worker1",
+      "app_name": "products",
+      "instance_name": "Products-Instance1",
+      "port": 5001,
+      "script_path": "C:\\production\\apps\\products\\instance1\\app.py"
+    },
+    {
+      "id": "products_worker2",
+      "app_name": "products",
+      "instance_name": "Products-Instance2",
+      "port": 5002,
+      "script_path": "C:\\production\\apps\\products\\instance2\\app.py"
+    },
+    {
+      "id": "orders_worker1",
+      "app_name": "orders",
+      "instance_name": "Orders-Instance1",
+      "port": 5011,
+      "script_path": "C:\\production\\apps\\orders\\instance1\\app.py"
+    },
+    {
+      "id": "orders_worker2",
+      "app_name": "orders",
+      "instance_name": "Orders-Instance2",
+      "port": 5012,
+      "script_path": "C:\\production\\apps\\orders\\instance2\\app.py"
+    },
+    {
+      "id": "users_worker1",
+      "app_name": "users",
+      "instance_name": "Users-Instance1",
+      "port": 5021,
+      "script_path": "C:\\production\\apps\\users\\instance1\\app.py"
+    },
+    {
+      "id": "users_worker2",
+      "app_name": "users",
+      "instance_name": "Users-Instance2",
+      "port": 5022,
+      "script_path": "C:\\production\\apps\\users\\instance2\\app.py"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+2026/02/17 06:37:54 [emerg] 3772#6916: CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)
+2026/02/17 06:39:28 [emerg] 5204#3304: CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)

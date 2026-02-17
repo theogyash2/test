@@ -1,0 +1,25 @@
+{
+  "services": [
+    {
+      "name": "products",
+      "script": "C:\\production\\app\\products\\app.py",
+      "workers": 4,
+      "threads": 6,
+      "start_port": 5001
+    },
+    {
+      "name": "orders",
+      "script": "C:\\production\\app\\orders\\app.py",
+      "workers": 2,
+      "threads": 4,
+      "start_port": 5011
+    },
+    {
+      "name": "users",
+      "script": "C:\\production\\app\\users\\app.py",
+      "workers": 2,
+      "threads": 4,
+      "start_port": 5021
+    }
+  ]
+}

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thread Visualizer - Unicorn Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --panel: #111118;
+    --border: #1e1e2e;
+    --accent: #00ff88;
+    --accent2: #ff6b35;
+    --accent3: #7c3aed;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --worker1: #00ff88;
+    --worker2: #00d4ff;
+    --worker3: #ff6b35;
+    --worker4: #ff3b82;
+    --worker5: #a78bfa;
+    --worker6: #fbbf24;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Config panel */
+  .config-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: end;
+  }
+
+  .config-group label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .config-group input, .config-group select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .config-group input:focus, .config-group select:focus {
+    border-color: var(--accent);
+  }
+
+  .fire-btn {
+    background: linear-gradient(135deg, var(--accent), #00cc6a);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fire-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,255,136,0.3); }
+  .fire-btn:active { transform: translateY(0); }
+  .fire-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .fire-btn .pulse {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .fire-btn.firing .pulse { transform: scaleX(1); }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+
+  .stat-card.active { border-color: var(--accent); }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+    transition: all 0.3s;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Main layout */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+
+  /* Workers panel */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .panel-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* Worker cards */
+  .workers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .worker-card {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .worker-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .worker-card.active::before { opacity: 0.08; }
+
+  .worker-card[data-color="0"] { --wc: var(--worker1); }
+  .worker-card[data-color="1"] { --wc: var(--worker2); }
+  .worker-card[data-color="2"] { --wc: var(--worker3); }
+  .worker-card[data-color="3"] { --wc: var(--worker4); }
+  .worker-card[data-color="4"] { --wc: var(--worker5); }
+  .worker-card[data-color="5"] { --wc: var(--worker6); }
+
+  .worker-card::before { background: var(--wc); }
+  .worker-card.active { border-color: var(--wc); box-shadow: 0 0 15px -5px var(--wc); }
+
+  .worker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .worker-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--wc, var(--accent));
+  }
+
+  .worker-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--wc, var(--accent));
+    transition: all 0.3s;
+  }
+
+  .worker-card.active .worker-dot {
+    box-shadow: 0 0 10px var(--wc, var(--accent));
+    animation: pulse-dot 0.8s ease infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+
+  .thread-bar {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 6px;
+  }
+
+  .thread-slot {
+    height: 6px;
+    flex: 1;
+    border-radius: 3px;
+    background: var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thread-slot.busy {
+    background: var(--wc, var(--accent));
+    box-shadow: 0 0 6px var(--wc, var(--accent));
+  }
+
+  .thread-slot.busy::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 1s ease infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .worker-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .worker-stats span { color: var(--wc, var(--accent)); }
+
+  /* Request stream */
+  .request-stream {
+    height: 350px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .request-stream::-webkit-scrollbar { width: 4px; }
+  .request-stream::-webkit-scrollbar-track { background: transparent; }
+  .request-stream::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .request-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    animation: slideIn 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .request-item.pending { background: rgba(100,116,139,0.1); border-left-color: var(--muted); color: var(--muted); }
+  .request-item.running { background: rgba(0,255,136,0.05); animation: slideIn 0.3s ease, glow 1s ease infinite alternate; }
+  .request-item.done { background: rgba(0,255,136,0.08); }
+  .request-item.error { background: rgba(255,59,130,0.08); border-left-color: var(--worker4); }
+
+  @keyframes glow {
+    from { background: rgba(0,255,136,0.05); }
+    to { background: rgba(0,255,136,0.12); }
+  }
+
+  .req-num {
+    font-size: 0.65rem;
+    color: var(--muted);
+    min-width: 24px;
+    text-align: right;
+  }
+
+  .req-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pending .req-status { background: var(--muted); }
+  .running .req-status { background: var(--accent); box-shadow: 0 0 6px var(--accent); animation: pulse-dot 0.6s ease infinite; }
+  .done .req-status { background: var(--accent); }
+  .error .req-status { background: var(--worker4); }
+
+  .req-info { flex: 1; }
+  .req-worker { color: var(--accent); }
+  .req-time {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 0.65rem;
+  }
+
+  /* Timeline visualization */
+  .timeline-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .timeline-container {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .timeline-inner {
+    min-width: 600px;
+    position: relative;
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    height: 28px;
+  }
+
+  .timeline-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    width: 120px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .timeline-track {
+    flex: 1;
+    height: 100%;
+    background: rgba(30,30,46,0.5);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline-block {
+    position: absolute;
+    top: 3px;
+    height: calc(100% - 6px);
+    border-radius: 3px;
+    transition: width 0.1s linear;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* Concurrency chart */
+  .concurrency-chart {
+    height: 80px;
+    background: var(--bg);
+    border-radius: 8px;
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .concurrency-bar {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    border-radius: 2px 2px 0 0;
+    transition: height 0.1s ease;
+    opacity: 0.8;
+  }
+
+  /* Footer log */
+  .log-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .log-output {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px;
+    height: 120px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .log-line { margin-bottom: 3px; }
+  .log-line .ts { color: var(--border); }
+  .log-line .ok { color: var(--accent); }
+  .log-line .err { color: var(--worker4); }
+  .log-line .info { color: var(--accent3); }
+
+  /* Worker colors */
+  .wc0 { border-left-color: var(--worker1) !important; }
+  .wc0 .req-worker { color: var(--worker1) !important; }
+  .wc1 { border-left-color: var(--worker2) !important; }
+  .wc1 .req-worker { color: var(--worker2) !important; }
+  .wc2 { border-left-color: var(--worker3) !important; }
+  .wc2 .req-worker { color: var(--worker3) !important; }
+  .wc3 { border-left-color: var(--worker4) !important; }
+  .wc3 .req-worker { color: var(--worker4) !important; }
+  .wc4 { border-left-color: var(--worker5) !important; }
+  .wc4 .req-worker { color: var(--worker5) !important; }
+  .wc5 { border-left-color: var(--worker6) !important; }
+  .wc5 .req-worker { color: var(--worker6) !important; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .badge.live { background: rgba(0,255,136,0.15); color: var(--accent); }
+  .badge.done { background: rgba(0,255,136,0.1); color: var(--accent); }
+
+  .clear-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: auto;
+  }
+
+  .clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Thread Visualizer</h1>
+    <p>Unicorn Architecture &mdash; Multi-Threading Live Demo</p>
+  </header>
+
+  <!-- Config -->
+  <div class="config-panel">
+    <div class="config-group">
+      <label>API Base URL</label>
+      <input type="text" id="apiUrl" value="http://localhost" placeholder="http://YOUR_IP">
+    </div>
+    <div class="config-group">
+      <label>Simultaneous Requests</label>
+      <input type="number" id="reqCount" value="20" min="1" max="100">
+    </div>
+    <div class="config-group">
+      <label>Endpoint</label>
+      <select id="endpoint">
+        <option value="/api/products">GET /api/products</option>
+        <option value="/api/products/1">GET /api/products/1</option>
+        <option value="/api/products/search?q=laptop">GET /search?q=laptop</option>
+	<option value="/api/users/me">GET /api/users/me</option>
+      </select>
+    </div>
+    <div class="config-group">
+      <label>Fire!</label>
+      <button class="fire-btn" id="fireBtn" onclick="fireRequests()">
+        <span class="pulse"></span>
+        SEND ALL AT ONCE
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-card" id="sc-total">
+      <span class="stat-value" id="sv-total">0</span>
+      <span class="stat-label">Total Sent</span>
+    </div>
+    <div class="stat-card" id="sc-active">
+      <span class="stat-value" id="sv-active">0</span>
+      <span class="stat-label">In Flight</span>
+    </div>
+    <div class="stat-card" id="sc-done">
+      <span class="stat-value" id="sv-done">0</span>
+      <span class="stat-label">Completed</span>
+    </div>
+    <div class="stat-card" id="sc-errors">
+      <span class="stat-value" id="sv-errors">0</span>
+      <span class="stat-label">Errors</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="sv-avgtime">--</span>
+      <span class="stat-label">Avg ms</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="sv-maxconc">0</span>
+      <span class="stat-label">Peak Concurrent</span>
+    </div>
+  </div>
+
+  <!-- Main grid: Workers + Stream -->
+  <div class="main-grid">
+
+    <!-- Workers -->
+    <div class="panel">
+      <div class="panel-title">Worker Instances (6 Workers x 4 Threads)</div>
+      <div class="workers-grid" id="workersGrid"></div>
+    </div>
+
+    <!-- Request stream -->
+    <div class="panel">
+      <div class="panel-title">
+        Live Request Stream
+        <button class="clear-btn" onclick="clearStream()">Clear</button>
+      </div>
+      <div class="request-stream" id="requestStream"></div>
+    </div>
+
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-panel">
+    <div class="panel-title">Concurrency Timeline — Each row = one request</div>
+    <div class="timeline-container">
+      <div class="timeline-inner" id="timelineInner"></div>
+    </div>
+    <div class="concurrency-chart" id="concurrencyChart"></div>
+  </div>
+
+  <!-- Log -->
+  <div class="log-panel">
+    <div class="panel-title">System Log</div>
+    <div class="log-output" id="logOutput"></div>
+  </div>
+
+</div>
+
+<script>
+// Worker definitions
+const WORKERS = [
+  { id: 'products_worker1', name: 'Products-Worker1', port: 5001, color: 0, keywords: ['products-worker1','products worker1','products-1','productsworker1'] },
+  { id: 'products_worker2', name: 'Products-Worker2', port: 5002, color: 1, keywords: ['products-worker2','products worker2','products-2','productsworker2'] },
+  { id: 'orders_worker1',   name: 'Orders-Worker1',   port: 5011, color: 2, keywords: ['orders-worker1','orders worker1','orders-1','ordersworker1'] },
+  { id: 'orders_worker2',   name: 'Orders-Worker2',   port: 5012, color: 3, keywords: ['orders-worker2','orders worker2','orders-2','ordersworker2'] },
+  { id: 'users_worker1',    name: 'Users-Worker1',    port: 5021, color: 4, keywords: ['users-worker1','users worker1','users-1','usersworker1'] },
+  { id: 'users_worker2',    name: 'Users-Worker2',    port: 5022, color: 5, keywords: ['users-worker2','users worker2','users-2','usersworker2'] },
+];
+
+const THREADS_PER_WORKER = 4;
+const WORKER_COLORS = ['#00ff88','#00d4ff','#ff6b35','#ff3b82','#a78bfa','#fbbf24'];
+
+// State
+let stats = { total: 0, active: 0, done: 0, errors: 0, times: [], maxConc: 0 };
+let workerStats = {};
+let concurrencyData = [];
+let timelineStart = null;
+let requestItems = [];
+
+// Init workers
+WORKERS.forEach(w => { workerStats[w.id] = { requests: 0, active: 0 }; });
+
+// Build worker cards
+function buildWorkers() {
+  const grid = document.getElementById('workersGrid');
+  grid.innerHTML = '';
+  WORKERS.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'worker-card';
+    card.id = `worker-${w.id}`;
+    card.dataset.color = w.color;
+    card.innerHTML = `
+      <div class="worker-header">
+        <span class="worker-name">${w.name}</span>
+        <span class="worker-dot"></span>
+      </div>
+      <div class="thread-bar" id="threads-${w.id}">
+        ${Array(THREADS_PER_WORKER).fill('<div class="thread-slot"></div>').join('')}
+      </div>
+      <div class="worker-stats">
+        <span>port ${w.port}</span>
+        <span id="wstat-${w.id}">0 reqs</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// Update worker visual
+function setWorkerActive(workerId, active) {
+  const card = document.getElementById(`worker-${workerId}`);
+  if (!card) return;
+  const workerIdx = WORKERS.findIndex(w => w.id === workerId);
+  const color = WORKER_COLORS[workerIdx] || '#00ff88';
+
+  workerStats[workerId].active += active ? 1 : -1;
+  if (workerStats[workerId].active < 0) workerStats[workerId].active = 0;
+
+  const activeCount = workerStats[workerId].active;
+  card.className = `worker-card ${activeCount > 0 ? 'active' : ''}`;
+  card.dataset.color = workerIdx;
+
+  // Update thread bars
+  const slots = card.querySelectorAll('.thread-slot');
+  slots.forEach((slot, i) => {
+    slot.className = `thread-slot ${i < activeCount ? 'busy' : ''}`;
+    if (i < activeCount) {
+      slot.style.setProperty('--wc', color);
+      slot.style.background = color;
+      slot.style.boxShadow = `0 0 6px ${color}`;
+    } else {
+      slot.style.background = '';
+      slot.style.boxShadow = '';
+    }
+  });
+
+  // Update count
+  if (active) workerStats[workerId].requests++;
+  document.getElementById(`wstat-${workerId}`).textContent = `${workerStats[workerId].requests} reqs`;
+}
+
+// Add request to stream
+function addStreamItem(reqNum, status, workerName, workerColorIdx, elapsed) {
+  const stream = document.getElementById('requestStream');
+  let item = document.getElementById(`req-${reqNum}`);
+
+  if (!item) {
+    item = document.createElement('div');
+    item.id = `req-${reqNum}`;
+    item.className = `request-item ${status}`;
+    stream.insertBefore(item, stream.firstChild);
+  }
+
+  const color = WORKER_COLORS[workerColorIdx] || '#00ff88';
+  item.className = `request-item ${status} wc${workerColorIdx}`;
+  item.style.borderLeftColor = color;
+
+  if (status === 'pending') {
+    item.innerHTML = `
+      <span class="req-num">#${reqNum}</span>
+      <span class="req-status"></span>
+      <span class="req-info">Queued — waiting...</span>
+    `;
+  } else if (status === 'running') {
+    item.innerHTML = `
+      <span class="req-num">#${reqNum}</span>
+      <span class="req-status"></span>
+      <span class="req-info"><span class="req-worker">${workerName}</span> processing...</span>
+      <span class="req-time"><span class="badge live">LIVE</span></span>
+    `;
+  } else if (status === 'done') {
+    item.innerHTML = `
+      <span class="req-num">#${reqNum}</span>
+      <span class="req-status"></span>
+      <span class="req-info"><span class="req-worker">${workerName}</span> handled it</span>
+      <span class="req-time">${elapsed}ms</span>
+    `;
+  } else if (status === 'error') {
+    item.innerHTML = `
+      <span class="req-num">#${reqNum}</span>
+      <span class="req-status"></span>
+      <span class="req-info">Request failed</span>
+      <span class="req-time">${elapsed || ''}ms</span>
+    `;
+  }
+
+  stream.scrollTop = 0;
+}
+
+// Update stats display
+function updateStats() {
+  document.getElementById('sv-total').textContent = stats.total;
+  document.getElementById('sv-active').textContent = stats.active;
+  document.getElementById('sv-done').textContent = stats.done;
+  document.getElementById('sv-errors').textContent = stats.errors;
+  document.getElementById('sv-maxconc').textContent = stats.maxConc;
+
+  if (stats.times.length > 0) {
+    const avg = Math.round(stats.times.reduce((a, b) => a + b, 0) / stats.times.length);
+    document.getElementById('sv-avgtime').textContent = avg;
+  }
+
+  document.getElementById('sc-active').className = `stat-card ${stats.active > 0 ? 'active' : ''}`;
+}
+
+// Log message
+function log(msg, type = 'info') {
+  const logEl = document.getElementById('logOutput');
+  const ts = new Date().toTimeString().slice(0, 8);
+  const line = document.createElement('div');
+  line.className = 'log-line';
+  line.innerHTML = `<span class="ts">[${ts}]</span> <span class="${type}">${msg}</span>`;
+  logEl.insertBefore(line, logEl.firstChild);
+}
+
+// Timeline management
+let timelineBlocks = [];
+
+function addTimelineBlock(reqNum, workerName, workerColorIdx, startOffset, endOffset) {
+  const color = WORKER_COLORS[workerColorIdx] || '#00ff88';
+  const inner = document.getElementById('timelineInner');
+  const totalWidth = inner.clientWidth - 130;
+
+  const row = document.createElement('div');
+  row.className = 'timeline-row';
+  row.id = `tl-${reqNum}`;
+
+  const maxDuration = Math.max(...timelineBlocks.map(b => b.end || endOffset), endOffset, 1000);
+  const leftPct = (startOffset / maxDuration) * 100;
+  const widthPct = ((endOffset - startOffset) / maxDuration) * 100;
+
+  row.innerHTML = `
+    <div class="timeline-label">#${reqNum} ${workerName}</div>
+    <div class="timeline-track">
+      <div class="timeline-block" style="left:${leftPct}%;width:${Math.max(widthPct,1)}%;background:${color}">
+        ${endOffset - startOffset}ms
+      </div>
+    </div>
+  `;
+
+  inner.appendChild(row);
+  timelineBlocks.push({ reqNum, start: startOffset, end: endOffset });
+
+  // Keep only last 30 rows
+  const rows = inner.querySelectorAll('.timeline-row');
+  if (rows.length > 30) rows[0].remove();
+}
+
+// Concurrency chart
+function updateConcurrencyChart() {
+  concurrencyData.push(stats.active);
+  if (concurrencyData.length > 100) concurrencyData.shift();
+
+  const chart = document.getElementById('concurrencyChart');
+  chart.innerHTML = '';
+  const max = Math.max(...concurrencyData, 1);
+
+  concurrencyData.forEach((val, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'concurrency-bar';
+    bar.style.left = `${i * 5}px`;
+    bar.style.height = `${(val / max) * 100}%`;
+    bar.style.opacity = 0.3 + (val / max) * 0.7;
+    chart.appendChild(bar);
+  });
+}
+
+// Main fire function
+async function fireRequests() {
+  const btn = document.getElementById('fireBtn');
+  const apiUrl = document.getElementById('apiUrl').value.trim();
+  const count = parseInt(document.getElementById('reqCount').value) || 10;
+  const endpoint = document.getElementById('endpoint').value;
+  const url = apiUrl + endpoint;
+
+  // Reset timeline
+  document.getElementById('timelineInner').innerHTML = '';
+  timelineBlocks = [];
+  timelineStart = Date.now();
+
+  btn.disabled = true;
+  btn.classList.add('firing');
+
+  log(`Firing ${count} simultaneous requests to ${endpoint}`, 'info');
+  log(`Target: ${url}`, 'info');
+
+  stats.total += count;
+  updateStats();
+
+  // Create all request promises at once
+  const promises = Array.from({ length: count }, (_, i) => {
+    const reqNum = stats.total - count + i + 1;
+    addStreamItem(reqNum, 'pending', '', 0, 0);
+    return runRequest(reqNum, url, timelineStart);
+  });
+
+  // Fire ALL at the same time
+  await Promise.allSettled(promises);
+
+  btn.disabled = false;
+  btn.classList.remove('firing');
+  log(`Batch complete. ${stats.done} succeeded, ${stats.errors} failed`, 'ok');
+}
+
+async function runRequest(reqNum, url, batchStart) {
+  const startTime = Date.now();
+  const startOffset = startTime - batchStart;
+
+  stats.active++;
+  if (stats.active > stats.maxConc) stats.maxConc = stats.active;
+  updateStats();
+  updateConcurrencyChart();
+
+  addStreamItem(reqNum, 'running', 'routing...', 0, 0);
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const endTime = Date.now();
+    const elapsed = endTime - startTime;
+    const endOffset = endTime - batchStart;
+
+    // Detect worker from response - improved matching
+    let workerName = data.instance || 'Unknown';
+    let workerColorIdx = 0;
+    let workerId = null;
+
+    const normalized = workerName.toLowerCase().replace(/[^a-z0-9]/g, '');
+    
+    // Try keyword matching first
+    WORKERS.forEach((w, i) => {
+      if (w.keywords.some(kw => normalized.includes(kw.replace(/[^a-z0-9]/g, '')))) {
+        workerColorIdx = i;
+        workerId = w.id;
+      }
+    });
+
+    // Fallback: try partial name match
+    if (!workerId) {
+      WORKERS.forEach((w, i) => {
+        const wNorm = w.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (normalized.includes(wNorm) || wNorm.includes(normalized)) {
+          workerColorIdx = i;
+          workerId = w.id;
+        }
+      });
+    }
+
+    // Last resort: assign by round-robin based on request number
+    if (!workerId) {
+      const idx = (reqNum - 1) % WORKERS.length;
+      workerColorIdx = idx;
+      workerId = WORKERS[idx].id;
+    }
+
+    // Update worker visual
+    if (workerId) {
+      setWorkerActive(workerId, true);
+      setTimeout(() => setWorkerActive(workerId, false), 300);
+    }
+
+    stats.active--;
+    stats.done++;
+    stats.times.push(elapsed);
+    updateStats();
+    updateConcurrencyChart();
+
+    addStreamItem(reqNum, 'done', workerName, workerColorIdx, elapsed);
+    addTimelineBlock(reqNum, workerName, workerColorIdx, startOffset, endOffset);
+
+    if (reqNum % 5 === 0) {
+      log(`Req #${reqNum} -> ${workerName} (${elapsed}ms)`, 'ok');
+    }
+
+  } catch (err) {
+    const elapsed = Date.now() - startTime;
+    stats.active--;
+    stats.errors++;
+    updateStats();
+    updateConcurrencyChart();
+    addStreamItem(reqNum, 'error', '', 0, elapsed);
+    log(`Req #${reqNum} failed: ${err.message}`, 'err');
+  }
+}
+
+function clearStream() {
+  document.getElementById('requestStream').innerHTML = '';
+  document.getElementById('timelineInner').innerHTML = '';
+  document.getElementById('logOutput').innerHTML = '';
+  concurrencyData = [];
+  stats = { total: 0, active: 0, done: 0, errors: 0, times: [], maxConc: 0 };
+  WORKERS.forEach(w => { workerStats[w.id] = { requests: 0, active: 0 }; });
+  updateStats();
+  buildWorkers();
+  log('Cleared. Ready for next test.', 'info');
+}
+
+// Init
+buildWorkers();
+log('Thread Visualizer ready. Configure your API URL and fire!', 'info');
+log('Workers: 6 instances x 4 threads = 24 concurrent capacity', 'info');
+
+// Auto-update concurrency chart
+setInterval(updateConcurrencyChart, 500);
+</script>
+</body>
+</html>
