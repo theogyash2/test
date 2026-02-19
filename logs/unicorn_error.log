@@ -284,3 +284,6 @@ Traceback (most recent call last):
            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 2: character maps to <undefined>
 nginx: [emerg] CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)
+nginx: [emerg] CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)
+nginx: [emerg] CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)
+nginx: [emerg] CreateFile() "C:\production/conf/nginx.conf" failed (3: The system cannot find the path specified)
