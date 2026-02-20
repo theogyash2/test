@@ -7,5 +7,25 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-      - run: C:\production\venv\Scripts\pip.exe install -r requirements.txt
-      - run: C:\production\nssm\nssm-2.24\win64\nssm.exe restart UnicornMaster
+      
+      - name: Install dependencies
+        run: C:\production\venv\Scripts\pip.exe install -r requirements.txt
+      
+      - name: Restart workers
+        run: |
+          Stop-Service UnicornMaster -ErrorAction SilentlyContinue
+          Start-Sleep -Seconds 5
+          Start-Service UnicornMaster
+      
+      - name: Wait for startup
+        run: Start-Sleep -Seconds 15
+      
+      - name: Health check
+        run: |
+          try {
+            $response = Invoke-RestMethod -Uri "http://localhost/api/products"
+            Write-Host "Deployment successful!"
+          } catch {
+            Write-Host "Health check failed!"
+            exit 1
+          }

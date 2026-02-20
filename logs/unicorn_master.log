@@ -54184,3 +54184,3962 @@ WORKER STATUS
     [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
     [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
     [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
+======================================================================
+  Products: http://localhost/api/products
+  Orders:   http://localhost/api/orders
+  Auth:     http://localhost/api/auth/login
+  Test:     http://localhost/test
+======================================================================
+
+
+======================================================================
+WORKER STATUS
+======================================================================
+
+  PRODUCTS SERVICE
+  Workers: 4/4 alive
+  Threads: 24 total (6 per worker)
+    [RUNNING] Products-Worker1 -> Port 5001 (PID: 4056, Restarts: 0)
+    [RUNNING] Products-Worker2 -> Port 5002 (PID: 3988, Restarts: 0)
+    [RUNNING] Products-Worker3 -> Port 5003 (PID: 2648, Restarts: 0)
+    [RUNNING] Products-Worker4 -> Port 5004 (PID: 4256, Restarts: 0)
+
+  ORDERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Orders-Worker1 -> Port 5011 (PID: 4536, Restarts: 0)
+    [RUNNING] Orders-Worker2 -> Port 5012 (PID: 4616, Restarts: 0)
+
+  USERS SERVICE
+  Workers: 2/2 alive
+  Threads: 8 total (4 per worker)
+    [RUNNING] Users-Worker1 -> Port 5021 (PID: 4728, Restarts: 0)
+    [RUNNING] Users-Worker2 -> Port 5022 (PID: 4852, Restarts: 0)
+
+======================================================================
+ACCESS URLS
