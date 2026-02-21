@@ -1,30 +1,203 @@
-name: Deploy to Production
+name: Setup and Deploy
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # ← Enables manual trigger button
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  setup-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Trigger deployment via webhook
-        run: |
-          curl -X POST http://13.232.50.25:9000/deploy \
-            -H "Content-Type: application/json" \
-            -d '{"ref":"refs/heads/main","repository":{"name":"test"}}'
+      - name: Checkout code
+        uses: actions/checkout@v3
       
-      - name: Wait for deployment
-        run: sleep 20
+      - name: Setup server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: 35.154.127.150
+          username: Administrator
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "=========================================="
+            echo "Starting server setup and deployment..."
+            echo "=========================================="
+            
+            # Check if Python installed
+            echo ""
+            echo "Checking Python..."
+            if (Get-Command python -ErrorAction SilentlyContinue) {
+              echo "✅ Python already installed: $(python --version)"
+            } else {
+              echo "📦 Installing Python..."
+              winget install Python.Python.3.13 -e --silent
+              echo "✅ Python installed"
+            }
+            
+            # Check if Git installed
+            echo ""
+            echo "Checking Git..."
+            if (Get-Command git -ErrorAction SilentlyContinue) {
+              echo "✅ Git already installed: $(git --version)"
+            } else {
+              echo "📦 Installing Git..."
+              winget install Git.Git -e --silent
+              echo "✅ Git installed"
+            }
+            
+            # Check if production folder exists
+            echo ""
+            echo "Checking production folder..."
+            if (Test-Path C:\production) {
+              echo "✅ Production folder exists"
+              echo "📥 Pulling latest code..."
+              cd C:\production
+              git pull origin main
+            } else {
+              echo "📦 Cloning repository..."
+              git clone https://github.com/theogyash2/test.git C:\production
+              cd C:\production
+            }
+            
+            # Setup venv
+            echo ""
+            echo "Checking virtual environment..."
+            if (Test-Path C:\production\venv) {
+              echo "✅ Virtual environment exists"
+            } else {
+              echo "📦 Creating virtual environment..."
+              python -m venv venv
+              echo "✅ Virtual environment created"
+            }
+            
+            # Install dependencies
+            echo ""
+            echo "📦 Installing Python dependencies..."
+            .\venv\Scripts\pip.exe install -r requirements.txt --quiet
+            echo "✅ Dependencies installed"
+            
+            # Check database
+            echo ""
+            echo "Checking database..."
+            if (Test-Path C:\production\database\ecommerce.db) {
+              echo "✅ Database exists"
+            } else {
+              echo "📦 Initializing database..."
+              .\venv\Scripts\python.exe init_database.py
+              echo "✅ Database initialized"
+            }
+            
+            # Check NSSM
+            echo ""
+            echo "Checking NSSM..."
+            if (Test-Path C:\production\nssm) {
+              echo "✅ NSSM already installed"
+            } else {
+              echo "📦 Downloading NSSM..."
+              Invoke-WebRequest -Uri "https://nssm.cc/release/nssm-2.24.zip" -OutFile "nssm.zip"
+              Expand-Archive nssm.zip -DestinationPath .
+              echo "✅ NSSM installed"
+            }
+            
+            # Check Nginx
+            echo ""
+            echo "Checking Nginx..."
+            if (Test-Path C:\nginx) {
+              echo "✅ Nginx already installed"
+            } else {
+              echo "📦 Downloading Nginx..."
+              Invoke-WebRequest -Uri "http://nginx.org/download/nginx-1.24.0.zip" -OutFile "nginx.zip"
+              Expand-Archive nginx.zip -DestinationPath C:\
+              Rename-Item C:\nginx-1.24.0 C:\nginx
+              Copy-Item C:\production\nginx.conf C:\nginx\conf\nginx.conf
+              echo "✅ Nginx installed"
+            }
+            
+            # Check UnicornMaster service
+            echo ""
+            echo "Checking UnicornMaster service..."
+            $service = Get-Service UnicornMaster -ErrorAction SilentlyContinue
+            if ($service) {
+              echo "✅ UnicornMaster service exists"
+              echo "🔄 Restarting UnicornMaster..."
+              C:\production\nssm\nssm-2.24\win64\nssm.exe restart UnicornMaster
+            } else {
+              echo "📦 Installing UnicornMaster service..."
+              C:\production\nssm\nssm-2.24\win64\nssm.exe install UnicornMaster "C:\production\venv\Scripts\python.exe" "C:\production\unicorn_master.py"
+              C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster AppDirectory "C:\production"
+              C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
+              C:\production\nssm\nssm-2.24\win64\nssm.exe start UnicornMaster
+              echo "✅ UnicornMaster service installed and started"
+            }
+            
+            # Check Nginx service
+            echo ""
+            echo "Checking Nginx service..."
+            $nginxService = Get-Service NginxService -ErrorAction SilentlyContinue
+            if ($nginxService) {
+              echo "✅ Nginx service exists"
+              echo "🔄 Restarting Nginx..."
+              C:\production\nssm\nssm-2.24\win64\nssm.exe restart NginxService
+            } else {
+              echo "📦 Installing Nginx service..."
+              C:\production\nssm\nssm-2.24\win64\nssm.exe install NginxService "C:\nginx\nginx.exe"
+              C:\production\nssm\nssm-2.24\win64\nssm.exe set NginxService AppDirectory "C:\nginx"
+              C:\production\nssm\nssm-2.24\win64\nssm.exe set NginxService Start SERVICE_AUTO_START
+              C:\production\nssm\nssm-2.24\win64\nssm.exe start NginxService
+              echo "✅ Nginx service installed and started"
+            }
+            
+            # Check firewall rules
+            echo ""
+            echo "Checking firewall rules..."
+            $httpRule = Get-NetFirewallRule -DisplayName "Allow HTTP Port 80" -ErrorAction SilentlyContinue
+            if ($httpRule) {
+              echo "✅ HTTP firewall rule exists"
+            } else {
+              echo "📦 Adding HTTP firewall rule..."
+              New-NetFirewallRule -DisplayName "Allow HTTP Port 80" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow
+              echo "✅ HTTP firewall rule added"
+            }
+            
+            echo ""
+            echo "=========================================="
+            echo "✅ Setup and deployment complete!"
+            echo "=========================================="
+            echo "Waiting for services to start..."
+            Start-Sleep -Seconds 15
       
       - name: Health check
         run: |
-          response=$(curl -s http://13.232.50.25/api/products)
+          echo "🏥 Running health checks..."
+          
+          echo ""
+          echo "Testing API root..."
+          curl -f http://35.154.127.150/ || (echo "❌ API root failed" && exit 1)
+          echo "✅ API root OK"
+          
+          echo ""
+          echo "Testing products endpoint..."
+          response=$(curl -s http://35.154.127.150/api/products)
           if echo "$response" | grep -q "success"; then
-            echo "✅ Deployment successful!"
+            echo "✅ Products endpoint OK"
           else
-            echo "❌ Health check failed"
+            echo "❌ Products endpoint failed"
             exit 1
           fi
+          
+          echo ""
+          echo "=========================================="
+          echo "✅ ALL HEALTH CHECKS PASSED!"
+          echo "=========================================="
+          echo "🌐 API: http://35.154.127.150"
+          echo "📦 Products: http://35.154.127.150/api/products"
+          echo "📋 Orders: http://35.154.127.150/api/orders"
+          echo "🔐 Auth: http://35.154.127.150/api/auth/login"
+```
+
+Now you need to add SSH private key to GitHub secrets:
+```
+GitHub → Settings → Secrets → Actions → New secret
+Name: SSH_PRIVATE_KEY
+Value: (paste your private key from C:\deploy_key)
