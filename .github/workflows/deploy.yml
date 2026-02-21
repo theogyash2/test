@@ -194,10 +194,3 @@ jobs:
           echo "📦 Products: http://35.154.127.150/api/products"
           echo "📋 Orders: http://35.154.127.150/api/orders"
           echo "🔐 Auth: http://35.154.127.150/api/auth/login"
-```
-
-Now you need to add SSH private key to GitHub secrets:
-```
-GitHub → Settings → Secrets → Actions → New secret
-Name: SSH_PRIVATE_KEY
-Value: (paste your private key from C:\deploy_key)
