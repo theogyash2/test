@@ -11,21 +11,23 @@ jobs:
       - name: Install dependencies
         run: C:\production\venv\Scripts\pip.exe install -r requirements.txt
       
-      - name: Restart workers
-        run: |
-          Stop-Service UnicornMaster -ErrorAction SilentlyContinue
-          Start-Sleep -Seconds 5
-          Start-Service UnicornMaster
+      - name: Stop workers
+        run: Get-Process python -ErrorAction SilentlyContinue | Stop-Process -Force
+      
+      - name: Wait
+        run: Start-Sleep -Seconds 5
+      
+      - name: Start Unicorn Master in background
+        run: Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd C:\production; python unicorn_master.py"
       
       - name: Wait for startup
-        run: Start-Sleep -Seconds 15
+        run: Start-Sleep -Seconds 20
       
       - name: Health check
         run: |
-          try {
-            $response = Invoke-RestMethod -Uri "http://localhost/api/products"
+          $response = Invoke-RestMethod -Uri "http://localhost/api/products"
+          if ($response.success) {
             Write-Host "Deployment successful!"
-          } catch {
-            Write-Host "Health check failed!"
+          } else {
             exit 1
           }
