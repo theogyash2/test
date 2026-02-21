@@ -1,33 +1,30 @@
-name: Deploy
+name: Deploy to Production
+
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:  # ← Enables manual trigger button
+
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v3
+      - name: Trigger deployment via webhook
+        run: |
+          curl -X POST http://13.232.50.25:9000/deploy \
+            -H "Content-Type: application/json" \
+            -d '{"ref":"refs/heads/main","repository":{"name":"test"}}'
       
-      - name: Install dependencies
-        run: C:\production\venv\Scripts\pip.exe install -r requirements.txt
-      
-      - name: Stop workers
-        run: Get-Process python -ErrorAction SilentlyContinue | Stop-Process -Force
-      
-      - name: Wait
-        run: Start-Sleep -Seconds 5
-      
-      - name: Start Unicorn Master in background
-        run: Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd C:\production; python unicorn_master.py"
-      
-      - name: Wait for startup
-        run: Start-Sleep -Seconds 20
+      - name: Wait for deployment
+        run: sleep 20
       
       - name: Health check
         run: |
-          $response = Invoke-RestMethod -Uri "http://localhost/api/products"
-          if ($response.success) {
-            Write-Host "Deployment successful!"
-          } else {
+          response=$(curl -s http://13.232.50.25/api/products)
+          if echo "$response" | grep -q "success"; then
+            echo "✅ Deployment successful!"
+          else
+            echo "❌ Health check failed"
             exit 1
-          }
+          fi
