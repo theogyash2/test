@@ -417,7 +417,7 @@ jobs:
         run: |
           echo "Waiting 20 seconds for services to start..."
           sleep 20
-          >>>>>>> 3b87534 (deploy.yml)
+          3b87534 (deploy.yml)
       
       - name: Health Check - API Root
         run: |
