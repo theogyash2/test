@@ -133,7 +133,7 @@ jobs:
             } else {
               Write-Host "Installing UnicornMaster service..."
               C:\production\nssm\nssm-2.24\win64\nssm.exe install UnicornMaster 
-"C:\production\venv\Scripts\python.exe" "C:\production\unicorn_master.py"
+              "C:\production\venv\Scripts\python.exe" "C:\production\unicorn_master.py"
               C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster AppDirectory "C:\production"
               C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
               C:\production\nssm\nssm-2.24\win64\nssm.exe start UnicornMaster
@@ -166,7 +166,7 @@ jobs:
             } else {
               Write-Host "Adding HTTP firewall rule..."
               New-NetFirewallRule -DisplayName "Allow HTTP Port 80" -Direction Inbound -LocalPort 80 
--Protocol TCP -Action Allow
+            -Protocol TCP -Action Allow
               Write-Host "HTTP firewall rule added"
             }
             
