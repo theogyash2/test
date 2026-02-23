@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  INSTANCE_ID: i-07fa5b29b2472d0fc  # CHANGE THIS to your instance ID
+  INSTANCE_ID: i-07fa5b29b2472d0fc
   AWS_REGION: ap-south-1
   SERVER_IP: 3.110.212.186
 
@@ -18,249 +18,61 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-       
-          host: ${{ env.SERVER_IP }}
-          username: Administrator
-          password: ${{ secrets.WINDOWS_PASSWORD }}
-          timeout: 600s
-          command_timeout: 30m
-          script: |
-            Write-Host "=========================================="
-            Write-Host "Starting server setup and deployment..."
-            Write-Host "=========================================="
-            
-            # Check if Python installed
-            Write-Host ""
-            Write-Host "Checking Python..."
-            if (Get-Command python -ErrorAction SilentlyContinue) {
-              Write-Host "Python already installed: $(python --version)"
-            } else {
-              Write-Host "Installing Python..."
-              winget install Python.Python.3.13 -e --silent
-              Write-Host "Python installed"
-            }
-            
-            # Check if Git installed
-            Write-Host ""
-            Write-Host "Checking Git..."
-            if (Get-Command git -ErrorAction SilentlyContinue) {
-              Write-Host "Git already installed: $(git --version)"
-            } else {
-              Write-Host "Installing Git..."
-              winget install Git.Git -e --silent
-              Write-Host "Git installed"
-            }
-            
-            # Check if production folder exists
-            Write-Host ""
-            Write-Host "Checking production folder..."
-            if (Test-Path C:\production) {
-              Write-Host "Production folder exists, pulling latest code..."
-              cd C:\production
-              git pull origin main
-            } else {
-              Write-Host "Cloning repository..."
-              git clone https://github.com/theogyash2/test.git C:\production
-              cd C:\production
-            }
-            
-            # Setup venv
-            Write-Host ""
-            Write-Host "Checking virtual environment..."
-            if (Test-Path C:\production\venv) {
-              Write-Host "Virtual environment exists"
-            } else {
-              Write-Host "Creating virtual environment..."
-              cd C:\production
-              python -m venv venv
-              Write-Host "Virtual environment created"
-            }
-            
-            # Install dependencies
-            Write-Host ""
-            Write-Host "Installing Python dependencies..."
-            cd C:\production
-            .\venv\Scripts\pip.exe install --upgrade pip
-            .\venv\Scripts\pip.exe install -r requirements.txt
-            Write-Host "Dependencies installed"
-            
-            # Check database
-            Write-Host ""
-            Write-Host "Checking database..."
-            if (Test-Path C:\production\database\ecommerce.db) {
-              Write-Host "Database exists"
-            } else {
-              Write-Host "Initializing database..."
-              .\venv\Scripts\python.exe init_database.py
-              Write-Host "Database initialized"
-            }
-            
-            # Check NSSM
-            Write-Host ""
-            Write-Host "Checking NSSM..."
-            if (Test-Path C:\production\nssm\nssm-2.24\win64\nssm.exe) {
-              Write-Host "NSSM already installed"
-            } else {
-              Write-Host "Downloading NSSM..."
-              cd C:\production
-              Invoke-WebRequest -Uri "https://nssm.cc/release/nssm-2.24.zip" -OutFile "nssm.zip"
-              Expand-Archive nssm.zip -DestinationPath . -Force
-              Write-Host "NSSM installed"
-            }
-            
-            # Check Nginx
-            Write-Host ""
-            Write-Host "Checking Nginx..."
-            if (Test-Path C:\nginx\nginx.exe) {
-              Write-Host "Nginx already installed"
-            } else {
-              Write-Host "Downloading Nginx..."
-              Invoke-WebRequest -Uri "http://nginx.org/download/nginx-1.24.0.zip" -OutFile "C:\nginx.zip"
-              Expand-Archive C:\nginx.zip -DestinationPath C:\ -Force
-              Rename-Item C:\nginx-1.24.0 C:\nginx
-              Copy-Item C:\production\nginx.conf C:\nginx\conf\nginx.conf -Force
-              Write-Host "Nginx installed"
-            }
-            
-            # Check UnicornMaster service
-            Write-Host ""
-            Write-Host "Checking UnicornMaster service..."
-            $service = Get-Service UnicornMaster -ErrorAction SilentlyContinue
-            if ($service) {
-              Write-Host "UnicornMaster service exists, restarting..."
-              C:\production\nssm\nssm-2.24\win64\nssm.exe restart UnicornMaster
-              Write-Host "UnicornMaster restarted"
-            } else {
-              Write-Host "Installing UnicornMaster service..."
-              C:\production\nssm\nssm-2.24\win64\nssm.exe install UnicornMaster 
-              "C:\production\venv\Scripts\python.exe" "C:\production\unicorn_master.py"
-              C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster AppDirectory "C:\production"
-              C:\production\nssm\nssm-2.24\win64\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
-              C:\production\nssm\nssm-2.24\win64\nssm.exe start UnicornMaster
-              Write-Host "UnicornMaster service installed and started"
-            }
-            
-            # Check Nginx service
-            Write-Host ""
-            Write-Host "Checking Nginx service..."
-            $nginxService = Get-Service NginxService -ErrorAction SilentlyContinue
-            if ($nginxService) {
-              Write-Host "Nginx service exists, restarting..."
-              C:\production\nssm\nssm-2.24\win64\nssm.exe restart NginxService
-              Write-Host "Nginx restarted"
-            } else {
-              Write-Host "Installing Nginx service..."
-              C:\production\nssm\nssm-2.24\win64\nssm.exe install NginxService "C:\nginx\nginx.exe"
-              C:\production\nssm\nssm-2.24\win64\nssm.exe set NginxService AppDirectory "C:\nginx"
-              C:\production\nssm\nssm-2.24\win64\nssm.exe set NginxService Start SERVICE_AUTO_START
-              C:\production\nssm\nssm-2.24\win64\nssm.exe start NginxService
-              Write-Host "Nginx service installed and started"
-            }
-            
-            # Check firewall rules
-            Write-Host ""
-            Write-Host "Checking firewall rules..."
-            $httpRule = Get-NetFirewallRule -DisplayName "Allow HTTP Port 80" -ErrorAction SilentlyContinue
-            if ($httpRule) {
-              Write-Host "HTTP firewall rule exists"
-            } else {
-              Write-Host "Adding HTTP firewall rule..."
-              New-NetFirewallRule -DisplayName "Allow HTTP Port 80" -Direction Inbound -LocalPort 80 
-            -Protocol TCP -Action Allow
-              Write-Host "HTTP firewall rule added"
-            }
-            
-            Write-Host ""
-            Write-Host "=========================================="
-            Write-Host "Setup and deployment complete!"
-            Write-Host "=========================================="
-            Write-Host "Waiting for services to start..."
-            Start-Sleep -Seconds 20
-
           aws-access-key-id: ${{ secrets.AK }}
           aws-secret-access-key: ${{ secrets.SAK }}
           aws-region: ${{ env.AWS_REGION }}
       
-      - name: Install Python
-        id: python
+      - name: Check and Install Python
         run: |
-          echo "Installing Python..."
+          echo "Checking Python..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["if (-not (Get-Command python -ErrorAction SilentlyContinue)) { 
-            Write-Host \"Installing Python...\"; winget install Python.Python.3.13 -e --silent } else { Write-Host 
-            \"Python already installed\" }"]' \
+            --parameters 'commands=["$pythonVersion = python --version 2>&1; if ($pythonVersion -match \"Python 3\") { Write-Host \"✅ Python already installed: $pythonVersion\" } else { Write-Host \"📦 Installing Python...\"; winget install Python.Python.3.13 -e --silent --accept-source-agreements --accept-package-agreements; Write-Host \"✅ Python installed\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          echo "Command ID: $COMMAND_ID"
-          sleep 60
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 30
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
-      - name: Install Git
+      - name: Check and Install Git
         run: |
-          echo "Installing Git..."
+          echo "Checking Git..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["if (-not (Get-Command git -ErrorAction SilentlyContinue)) { Write-Host 
-            \"Installing Git...\"; winget install Git.Git -e --silent } else { Write-Host \"Git already installed\" 
-            }"]' \
+            --parameters 'commands=["$gitVersion = git --version 2>&1; if ($gitVersion -match \"git version\") { Write-Host \"✅ Git already installed: $gitVersion\" } else { Write-Host \"📦 Installing Git...\"; winget install Git.Git -e --silent --accept-source-agreements --accept-package-agreements; Write-Host \"✅ Git installed\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 60
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 30
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Clone or Pull Repository
         run: |
-          echo "Cloning/pulling repository..."
+          echo "Checking repository..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["if (Test-Path C:\\production) { Write-Host \"Pulling latest code...\"; 
-            cd C:\\production; git pull origin main } else { Write-Host \"Cloning repository...\"; git clone 
-            https://github.com/theogyash2/test.git C:\\production }"]' \
+            --parameters 'commands=["if (Test-Path C:\\production\\.git) { Write-Host \"✅ Repository exists, pulling latest...\"; cd C:\\production; git pull origin main; Write-Host \"✅ Code updated\" } else { Write-Host \"📦 Cloning repository...\"; git clone https://github.com/theogyash2/test.git C:\\production; Write-Host \"✅ Repository cloned\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 30
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 20
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Setup Virtual Environment
         run: |
-          echo "Setting up Python virtual environment..."
+          echo "Checking virtual environment..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["cd C:\\production; if (-not (Test-Path venv)) { Write-Host \"Creating 
-            venv...\"; python -m venv venv } else { Write-Host \"Venv exists\" }"]' \
+            --parameters 'commands=["if (Test-Path C:\\production\\venv\\Scripts\\python.exe) { Write-Host \"✅ Virtual environment exists\" } else { Write-Host \"📦 Creating virtual environment...\"; cd C:\\production; python -m venv venv; Write-Host \"✅ Virtual environment created\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 30
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 20
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Install Dependencies
         run: |
@@ -268,81 +80,51 @@ jobs:
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["cd C:\\production; .\\venv\\Scripts\\pip.exe install --upgrade pip; 
-              .\\venv\\Scripts\\pip.exe install -r requirements.txt"]' \
+            --parameters 'commands=["Write-Host \"📦 Installing dependencies...\"; cd C:\\production; .\\venv\\Scripts\\pip.exe install --upgrade pip --quiet; .\\venv\\Scripts\\pip.exe install -r requirements.txt --quiet; Write-Host \"✅ Dependencies installed\""]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 60
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 45
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Initialize Database
         run: |
-          echo "Initializing database..."
+          echo "Checking database..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["cd C:\\production; if (-not (Test-Path database\\ecommerce.db)) { 
-            Write-Host \"Initializing database...\"; .\\venv\\Scripts\\python.exe init_database.py } else { Write-Host 
-            \"Database exists\" }"]' \
+            --parameters 'commands=["if (Test-Path C:\\production\\database\\ecommerce.db) { Write-Host \"✅ Database exists\" } else { Write-Host \"📦 Initializing database...\"; cd C:\\production; .\\venv\\Scripts\\python.exe init_database.py; Write-Host \"✅ Database initialized\" }"]' \
+            --output text \
+            --query "Command.CommandId")
+          
+          sleep 20
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
+      
+      - name: Check and Install NSSM
+        run: |
+          echo "Checking NSSM..."
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids ${{ env.INSTANCE_ID }} \
+            --document-name "AWS-RunPowerShellScript" \
+            --parameters 'commands=["if (Test-Path C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe) { Write-Host \"✅ NSSM already installed\" } else { Write-Host \"📦 Downloading NSSM...\"; cd C:\\production; Invoke-WebRequest -Uri \"https://nssm.cc/release/nssm-2.24.zip\" -OutFile \"nssm.zip\"; Expand-Archive nssm.zip -Force; Write-Host \"✅ NSSM installed\" }"]' \
             --output text \
             --query "Command.CommandId")
           
           sleep 30
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
-      - name: Install NSSM
+      - name: Check and Install Nginx
         run: |
-          echo "Installing NSSM..."
+          echo "Checking Nginx..."
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["cd C:\\production; if (-not (Test-Path 
-            nssm\\nssm-2.24\\win64\\nssm.exe)) { Write-Host \"Downloading NSSM...\"; Invoke-WebRequest -Uri 
-            \"https://nssm.cc/release/nssm-2.24.zip\" -OutFile \"nssm.zip\"; Expand-Archive nssm.zip -Force } else { 
-            Write-Host \"NSSM exists\" }"]' \
+            --parameters 'commands=["if (Test-Path C:\\nginx\\nginx.exe) { Write-Host \"✅ Nginx already installed\"; Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force; Write-Host \"✅ Nginx config updated\" } else { Write-Host \"📦 Downloading Nginx...\"; Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile \"C:\\nginx.zip\"; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item C:\\nginx-1.24.0 C:\\nginx -Force; Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force; Write-Host \"✅ Nginx installed\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 45
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
-      
-      - name: Install Nginx
-        run: |
-          echo "Installing Nginx..."
-          COMMAND_ID=$(aws ssm send-command \
-            --instance-ids ${{ env.INSTANCE_ID }} \
-            --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["if (-not (Test-Path C:\\nginx\\nginx.exe)) { Write-Host \"Downloading 
-            Nginx...\"; Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile 
-            \"C:\\nginx.zip\"; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item C:\\nginx-1.24.0 
-            C:\\nginx -Force; Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force } else { 
-            Write-Host \"Nginx exists\"; Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force }"]' \
-            --output text \
-            --query "Command.CommandId")
-          
-          sleep 45
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 30
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Setup UnicornMaster Service
         run: |
@@ -350,24 +132,12 @@ jobs:
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["$service = Get-Service UnicornMaster -ErrorAction SilentlyContinue; if 
-            ($service) { Write-Host \"Restarting UnicornMaster...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe 
-            restart UnicornMaster } else { Write-Host \"Installing UnicornMaster...\"; 
-            C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe install UnicornMaster 
-            \"C:\\production\\venv\\Scripts\\python.exe\" \"C:\\production\\unicorn_master.py\"; 
-            C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set UnicornMaster AppDirectory \"C:\\production\"; 
-            C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START; 
-            C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe start UnicornMaster }"]' \
+            --parameters 'commands=["$service = Get-Service UnicornMaster -ErrorAction SilentlyContinue; if ($service) { Write-Host \"✅ UnicornMaster service exists\"; Write-Host \"🔄 Restarting UnicornMaster...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe restart UnicornMaster; Write-Host \"✅ UnicornMaster restarted\" } else { Write-Host \"📦 Installing UnicornMaster service...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe install UnicornMaster \"C:\\production\\venv\\Scripts\\python.exe\" \"C:\\production\\unicorn_master.py\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set UnicornMaster AppDirectory \"C:\\production\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe start UnicornMaster; Write-Host \"✅ UnicornMaster service installed and started\" }"]' \
             --output text \
             --query "Command.CommandId")
           
-          sleep 45
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          sleep 30
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Setup Nginx Service
         run: |
@@ -375,56 +145,54 @@ jobs:
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids ${{ env.INSTANCE_ID }} \
             --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["$service = Get-Service NginxService -ErrorAction SilentlyContinue; if 
-            ($service) { Write-Host \"Restarting Nginx...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe restart 
-            NginxService } else { Write-Host \"Installing Nginx...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe 
-            install NginxService \"C:\\nginx\\nginx.exe\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set 
-            NginxService AppDirectory \"C:\\nginx\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set NginxService 
-            Start SERVICE_AUTO_START; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe start NginxService }"]' \
-            --output text \
-            --query "Command.CommandId")
-          
-          sleep 45
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
-      
-      - name: Configure Firewall
-        run: |
-          echo "Configuring Windows Firewall..."
-          COMMAND_ID=$(aws ssm send-command \
-            --instance-ids ${{ env.INSTANCE_ID }} \
-            --document-name "AWS-RunPowerShellScript" \
-            --parameters 'commands=["$rule = Get-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" 
-            -ErrorAction SilentlyContinue; if (-not $rule) { Write-Host \"Adding firewall rule...\"; 
-            New-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -Direction Inbound -LocalPort 80 -Protocol TCP 
-            -Action Allow } else { Write-Host \"Firewall rule exists\" }"]' \
+            --parameters 'commands=["$service = Get-Service NginxService -ErrorAction SilentlyContinue; if ($service) { Write-Host \"✅ Nginx service exists\"; Write-Host \"🔄 Restarting Nginx...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe restart NginxService; Write-Host \"✅ Nginx restarted\" } else { Write-Host \"📦 Installing Nginx service...\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe install NginxService \"C:\\nginx\\nginx.exe\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set NginxService AppDirectory \"C:\\nginx\"; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe set NginxService Start SERVICE_AUTO_START; C:\\production\\nssm\\nssm-2.24\\win64\\nssm.exe start NginxService; Write-Host \"✅ Nginx service installed and started\" }"]' \
             --output text \
             --query "Command.CommandId")
           
           sleep 30
-          
-          aws ssm get-command-invocation \
-            --instance-id ${{ env.INSTANCE_ID }} \
-            --command-id $COMMAND_ID \
-            --query "StandardOutputContent" \
-            --output text
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
+      - name: Configure Firewall
+        run: |
+          echo "Configuring firewall..."
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids ${{ env.INSTANCE_ID }} \
+            --document-name "AWS-RunPowerShellScript" \
+            --parameters 'commands=["$rule = Get-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -ErrorAction SilentlyContinue; if ($rule) { Write-Host \"✅ Firewall rule exists\" } else { Write-Host \"📦 Adding firewall rule...\"; New-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow; Write-Host \"✅ Firewall rule added\" }"]' \
+            --output text \
+            --query "Command.CommandId")
+          
+          sleep 15
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
+      
+      - name: Verify Services Running
+        run: |
+          echo "Verifying services..."
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids ${{ env.INSTANCE_ID }} \
+            --document-name "AWS-RunPowerShellScript" \
+            --parameters 'commands=["Write-Host \"Checking services...\"; Get-Service UnicornMaster,NginxService | Format-Table Name,Status -AutoSize; Write-Host \"`nChecking ports...\"; netstat -ano | findstr \":80 :5001 :5002 :5011 :5012 :5021 :5022\""]' \
+            --output text \
+            --query "Command.CommandId")
+          
+          sleep 20
+          aws ssm get-command-invocation --instance-id ${{ env.INSTANCE_ID }} --command-id $COMMAND_ID --query "StandardOutputContent" --output text
       
       - name: Wait for Services
         run: |
-          echo "Waiting 20 seconds for services to start..."
-          sleep 20
-      
+          echo "Waiting 30 seconds for services to fully start..."
+          sleep 30
       
       - name: Health Check - API Root
         run: |
           echo "Testing API root..."
-          curl -f http://${{ env.SERVER_IP }}/ || (echo "API root failed" && exit 1)
-          echo "✅ API root OK"
+          response=$(curl -s -o /dev/null -w "%{http_code}" http://${{ env.SERVER_IP }}/)
+          if [ "$response" = "200" ]; then
+            echo "✅ API root OK (HTTP $response)"
+          else
+            echo "❌ API root failed (HTTP $response)"
+            exit 1
+          fi
       
       - name: Health Check - Products
         run: |
@@ -432,8 +200,23 @@ jobs:
           response=$(curl -s http://${{ env.SERVER_IP }}/api/products)
           if echo "$response" | grep -q "success"; then
             echo "✅ Products endpoint OK"
+            echo "$response" | head -c 200
           else
             echo "❌ Products endpoint failed"
+            echo "$response"
             exit 1
           fi
-     
+      
+      - name: Deployment Summary
+        if: success()
+        run: |
+          echo ""
+          echo "=========================================="
+          echo "✅ DEPLOYMENT SUCCESSFUL!"
+          echo "=========================================="
+          echo "🌐 API: http://${{ env.SERVER_IP }}"
+          echo "📦 Products: http://${{ env.SERVER_IP }}/api/products"
+          echo "📋 Orders: http://${{ env.SERVER_IP }}/api/orders"
+          echo "🔐 Auth: http://${{ env.SERVER_IP }}/api/auth/login"
+          echo "🧪 Test UI: http://${{ env.SERVER_IP }}/test"
+          echo "=========================================="
