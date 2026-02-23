@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  SERVER_IP: 35.154.127.150
+  SERVER_IP: 3.110.212.186
 
 jobs:
   setup-and-deploy:
