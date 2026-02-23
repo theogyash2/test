@@ -18,7 +18,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-<<<<<<< HEAD
+        HEAD
           host: ${{ env.SERVER_IP }}
           username: Administrator
           password: ${{ secrets.WINDOWS_PASSWORD }}
