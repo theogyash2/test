@@ -10,13 +10,6 @@ env:
   AWS_REGION: ap-south-1
   SERVER_IP: 3.110.212.186
 
-# ── Helper: run a PowerShell command via SSM and FAIL if it errors ────────────
-# Every step now uses this pattern:
-#   1. Send SSM command
-#   2. Poll until it finishes (not just sleep blindly)
-#   3. Print stdout AND stderr
-#   4. Exit 1 if the command failed on the remote side
-
 jobs:
   setup-and-deploy:
     runs-on: ubuntu-latest
@@ -29,166 +22,120 @@ jobs:
           aws-secret-access-key: ${{ secrets.SAK }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # ── Reusable SSM polling function written to a shell script ────────────
       - name: Write SSM helper script
         run: |
           cat << 'EOF' > /tmp/ssm_run.sh
           #!/bin/bash
-          # Usage: ssm_run.sh "PowerShell commands here"
           INSTANCE_ID="$1"
           REGION="$2"
           COMMANDS="$3"
-
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids "$INSTANCE_ID" \
             --document-name "AWS-RunPowerShellScript" \
             --parameters "commands=[\"$COMMANDS\"]" \
-            --output text \
-            --query "Command.CommandId" \
-            --region "$REGION")
-
+            --output text --query "Command.CommandId" --region "$REGION")
           echo "SSM Command ID: $COMMAND_ID"
-
-          # Poll until done (max 5 minutes)
-          for i in $(seq 1 30); do
+          for i in $(seq 1 36); do
             sleep 10
             STATUS=$(aws ssm get-command-invocation \
-              --instance-id "$INSTANCE_ID" \
-              --command-id "$COMMAND_ID" \
-              --query "Status" \
-              --output text \
-              --region "$REGION" 2>/dev/null)
+              --instance-id "$INSTANCE_ID" --command-id "$COMMAND_ID" \
+              --query "Status" --output text --region "$REGION" 2>/dev/null)
             echo "Status: $STATUS"
             if [[ "$STATUS" == "Success" || "$STATUS" == "Failed" || "$STATUS" == "TimedOut" || "$STATUS" == "Cancelled" ]]; then
               break
             fi
           done
-
-          STDOUT=$(aws ssm get-command-invocation \
-            --instance-id "$INSTANCE_ID" \
-            --command-id "$COMMAND_ID" \
-            --query "StandardOutputContent" \
-            --output text \
-            --region "$REGION")
-
-          STDERR=$(aws ssm get-command-invocation \
-            --instance-id "$INSTANCE_ID" \
-            --command-id "$COMMAND_ID" \
-            --query "StandardErrorContent" \
-            --output text \
-            --region "$REGION")
-
-          echo "=== STDOUT ==="
-          echo "$STDOUT"
-          echo "=== STDERR ==="
-          echo "$STDERR"
-
-          if [[ "$STATUS" != "Success" ]]; then
-            echo "❌ SSM command failed with status: $STATUS"
-            exit 1
-          fi
+          STDOUT=$(aws ssm get-command-invocation --instance-id "$INSTANCE_ID" --command-id "$COMMAND_ID" --query "StandardOutputContent" --output text --region "$REGION")
+          STDERR=$(aws ssm get-command-invocation --instance-id "$INSTANCE_ID" --command-id "$COMMAND_ID" --query "StandardErrorContent" --output text --region "$REGION")
+          echo "=== STDOUT ===" && echo "$STDOUT"
+          echo "=== STDERR ===" && echo "$STDERR"
+          if [[ "$STATUS" != "Success" ]]; then echo "SSM command failed: $STATUS"; exit 1; fi
           EOF
           chmod +x /tmp/ssm_run.sh
 
-      - name: Check and Install Python
+      # FIX: Use direct .exe installers - winget does NOT work under SYSTEM account
+      - name: Install Python
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$v = python --version 2>&1; if (\$v -match 'Python 3') { Write-Host '✅ Python: ' + \$v } else { winget install Python.Python.3.13 -e --silent --accept-source-agreements --accept-package-agreements; Write-Host '✅ Python installed' }"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\Python313\\python.exe') { Write-Host 'Python exists'; exit 0 }; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe' -OutFile 'C:\\python_installer.exe'; Start-Process 'C:\\python_installer.exe' -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313' -Wait; Write-Host 'Python installed: ' + (& C:\\Python313\\python.exe --version 2>&1)"
 
-      - name: Check and Install Git
+      - name: Install Git
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$v = git --version 2>&1; if (\$v -match 'git version') { Write-Host '✅ Git: ' + \$v } else { winget install Git.Git -e --silent --accept-source-agreements --accept-package-agreements; Write-Host '✅ Git installed' }"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\Program Files\\Git\\bin\\git.exe') { Write-Host 'Git exists'; exit 0 }; Invoke-WebRequest -Uri 'https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe' -OutFile 'C:\\git_installer.exe'; Start-Process 'C:\\git_installer.exe' -ArgumentList '/VERYSILENT /NORESTART /NOCANCEL /SP-' -Wait; Write-Host 'Git installed: ' + (& 'C:\\Program Files\\Git\\bin\\git.exe' --version 2>&1)"
 
+      # FIX: Use full absolute paths everywhere - never rely on PATH under SYSTEM
       - name: Clone or Pull Repository
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "if (Test-Path C:\\\\production\\\\.git) { cd C:\\\\production; git pull origin main; Write-Host '✅ Pulled latest' } else { git clone https://github.com/theogyash2/test.git C:\\\\production; Write-Host '✅ Cloned repo' }"
+          "\$ErrorActionPreference = 'Stop'; \$git = 'C:\\Program Files\\Git\\bin\\git.exe'; if (Test-Path 'C:\\production\\.git') { & \$git -C C:\\production pull origin main; Write-Host 'Pulled latest' } else { & \$git clone https://github.com/theogyash2/test.git C:\\production; Write-Host 'Cloned repo' }"
 
       - name: Setup Virtual Environment
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "if (-not (Test-Path C:\\\\production\\\\venv\\\\Scripts\\\\python.exe)) { cd C:\\\\production; python -m venv venv; Write-Host '✅ venv created' } else { Write-Host '✅ venv exists' }"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\production\\venv\\Scripts\\python.exe') { Write-Host 'venv exists' } else { & 'C:\\Python313\\python.exe' -m venv C:\\production\\venv; Write-Host 'venv created' }"
 
       - name: Install Dependencies
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "cd C:\\\\production; .\\\\venv\\\\Scripts\\\\pip.exe install --upgrade pip -q; .\\\\venv\\\\Scripts\\\\pip.exe install -r requirements.txt -q; Write-Host '✅ Dependencies installed'"
+          "\$ErrorActionPreference = 'Stop'; & 'C:\\production\\venv\\Scripts\\pip.exe' install --upgrade pip -q; & 'C:\\production\\venv\\Scripts\\pip.exe' install -r C:\\production\\requirements.txt -q; Write-Host 'Dependencies installed'"
 
       - name: Initialize Database
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "if (-not (Test-Path C:\\\\production\\\\database\\\\ecommerce.db)) { cd C:\\\\production; .\\\\venv\\\\Scripts\\\\python.exe init_database.py; Write-Host '✅ DB initialized' } else { Write-Host '✅ DB exists' }"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\production\\database\\ecommerce.db') { Write-Host 'DB exists' } else { & 'C:\\production\\venv\\Scripts\\python.exe' C:\\production\\init_database.py; Write-Host 'DB initialized' }"
 
-      - name: Check and Install NSSM
+      - name: Install NSSM
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "if (-not (Test-Path C:\\\\production\\\\nssm\\\\nssm-2.24\\\\win64\\\\nssm.exe)) { cd C:\\\\production; Invoke-WebRequest -Uri 'https://nssm.cc/release/nssm-2.24.zip' -OutFile 'nssm.zip'; Expand-Archive nssm.zip -Force; Write-Host '✅ NSSM installed' } else { Write-Host '✅ NSSM exists' }"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\nssm\\nssm.exe') { Write-Host 'NSSM exists'; exit 0 }; Invoke-WebRequest -Uri 'https://nssm.cc/release/nssm-2.24.zip' -OutFile 'C:\\nssm.zip'; Expand-Archive C:\\nssm.zip -DestinationPath C:\\nssm_tmp -Force; New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null; Copy-Item 'C:\\nssm_tmp\\nssm-2.24\\win64\\nssm.exe' 'C:\\nssm\\nssm.exe'; Remove-Item C:\\nssm_tmp -Recurse -Force; Write-Host 'NSSM installed'"
 
-      - name: Check and Install Nginx
+      - name: Install Nginx
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "if (-not (Test-Path C:\\\\nginx\\\\nginx.exe)) { Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\\\nginx.zip'; Expand-Archive C:\\\\nginx.zip -DestinationPath C:\\\\ -Force; Rename-Item C:\\\\nginx-1.24.0 C:\\\\nginx -Force; Write-Host '✅ Nginx installed' } else { Write-Host '✅ Nginx exists' }; Copy-Item C:\\\\production\\\\nginx.conf C:\\\\nginx\\\\conf\\\\nginx.conf -Force; \$test = C:\\\\nginx\\\\nginx.exe -t 2>&1; if (\$LASTEXITCODE -ne 0) { Write-Host '❌ nginx.conf invalid: ' + \$test; exit 1 } else { Write-Host '✅ nginx.conf valid' }"
+          "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\nginx\\nginx.exe')) { Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\nginx.zip'; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\nginx-1.24.0' 'C:\\nginx' -Force; Write-Host 'Nginx installed' } else { Write-Host 'Nginx exists' }; if (-not (Test-Path 'C:\\production\\nginx.conf')) { Write-Host 'ERROR: nginx.conf missing from repo!'; exit 1 }; Copy-Item 'C:\\production\\nginx.conf' 'C:\\nginx\\conf\\nginx.conf' -Force; \$test = & 'C:\\nginx\\nginx.exe' -t -p 'C:\\nginx' 2>&1; if (\$LASTEXITCODE -ne 0) { Write-Host 'nginx.conf invalid: ' + \$test; exit 1 }; Write-Host 'nginx.conf valid'"
 
-      # ── FIX: Install services properly and verify they actually started ────
       - name: Setup UnicornMaster Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$nssm = 'C:\\\\production\\\\nssm\\\\nssm-2.24\\\\win64\\\\nssm.exe'; \$svc = Get-Service UnicornMaster -ErrorAction SilentlyContinue; if (\$svc) { Write-Host '🔄 Restarting UnicornMaster...'; & \$nssm restart UnicornMaster } else { Write-Host '📦 Installing UnicornMaster...'; & \$nssm install UnicornMaster 'C:\\\\production\\\\venv\\\\Scripts\\\\python.exe' 'C:\\\\production\\\\unicorn_master.py'; & \$nssm set UnicornMaster AppDirectory 'C:\\\\production'; & \$nssm set UnicornMaster Start SERVICE_AUTO_START; & \$nssm start UnicornMaster }; Start-Sleep 5; \$s = Get-Service UnicornMaster; Write-Host ('Service status: ' + \$s.Status); if (\$s.Status -ne 'Running') { Write-Host '❌ UnicornMaster not running'; exit 1 } else { Write-Host '✅ UnicornMaster running' }"
+          "\$ErrorActionPreference = 'Stop'; \$nssm = 'C:\\nssm\\nssm.exe'; \$svc = Get-Service UnicornMaster -ErrorAction SilentlyContinue; if (\$svc) { & \$nssm restart UnicornMaster; Write-Host 'UnicornMaster restarted' } else { & \$nssm install UnicornMaster 'C:\\production\\venv\\Scripts\\python.exe' 'C:\\production\\unicorn_master.py'; & \$nssm set UnicornMaster AppDirectory 'C:\\production'; & \$nssm set UnicornMaster Start SERVICE_AUTO_START; & \$nssm start UnicornMaster; Write-Host 'UnicornMaster installed' }; Start-Sleep 5; \$s = Get-Service UnicornMaster; if (\$s.Status -ne 'Running') { Write-Host 'UnicornMaster not running: ' + \$s.Status; exit 1 }; Write-Host 'UnicornMaster running'"
 
       - name: Setup Nginx Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$nssm = 'C:\\\\production\\\\nssm\\\\nssm-2.24\\\\win64\\\\nssm.exe'; \$svc = Get-Service NginxService -ErrorAction SilentlyContinue; if (\$svc) { Write-Host '🔄 Restarting NginxService...'; & \$nssm restart NginxService } else { Write-Host '📦 Installing NginxService...'; & \$nssm install NginxService 'C:\\\\nginx\\\\nginx.exe'; & \$nssm set NginxService AppDirectory 'C:\\\\nginx'; & \$nssm set NginxService Start SERVICE_AUTO_START; & \$nssm start NginxService }; Start-Sleep 5; \$s = Get-Service NginxService; Write-Host ('Service status: ' + \$s.Status); if (\$s.Status -ne 'Running') { Write-Host '❌ NginxService not running'; exit 1 } else { Write-Host '✅ NginxService running' }"
+          "\$ErrorActionPreference = 'Stop'; \$nssm = 'C:\\nssm\\nssm.exe'; \$svc = Get-Service NginxService -ErrorAction SilentlyContinue; if (\$svc) { & \$nssm restart NginxService; Write-Host 'NginxService restarted' } else { & \$nssm install NginxService 'C:\\nginx\\nginx.exe'; & \$nssm set NginxService AppDirectory 'C:\\nginx'; & \$nssm set NginxService Start SERVICE_AUTO_START; & \$nssm start NginxService; Write-Host 'NginxService installed' }; Start-Sleep 5; \$s = Get-Service NginxService; if (\$s.Status -ne 'Running') { Write-Host 'NginxService not running: ' + \$s.Status; exit 1 }; Write-Host 'NginxService running'"
 
       - name: Configure Firewall
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$rule = Get-NetFirewallRule -DisplayName 'Allow HTTP Port 80' -ErrorAction SilentlyContinue; if (-not \$rule) { New-NetFirewallRule -DisplayName 'Allow HTTP Port 80' -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow; Write-Host '✅ Firewall rule added' } else { Write-Host '✅ Firewall rule exists' }"
+          "\$rule = Get-NetFirewallRule -DisplayName 'Allow HTTP Port 80' -ErrorAction SilentlyContinue; if (-not \$rule) { New-NetFirewallRule -DisplayName 'Allow HTTP Port 80' -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow; Write-Host 'Firewall rule added' } else { Write-Host 'Firewall rule exists' }"
 
-      - name: Verify Ports Listening
+      - name: Verify Port 80 Listening
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ports = netstat -ano | findstr 'LISTENING'; Write-Host \$ports; if (\$ports -notmatch ':80 ') { Write-Host '❌ Nothing listening on port 80'; exit 1 } else { Write-Host '✅ Port 80 is listening' }"
+          "\$listening = netstat -ano | findstr 'LISTENING' | findstr ':80 '; if (-not \$listening) { Write-Host 'Port 80 not listening'; exit 1 }; Write-Host 'Port 80 is listening'"
 
-      # ── FIX: Retry loop instead of fixed sleep ─────────────────────────────
       - name: Health Check with Retry
         run: |
-          echo "Polling ${{ env.SERVER_IP }} for up to 2 minutes..."
+          echo "Polling http://${{ env.SERVER_IP }} ..."
           for i in {1..12}; do
             echo "Attempt $i/12..."
-            response=$(curl -s -o /dev/null -w "%{http_code}" \
-              --connect-timeout 10 --max-time 15 \
-              http://${{ env.SERVER_IP }}/)
-            if [ "$response" = "200" ]; then
-              echo "✅ API is up! (HTTP $response)"
-              exit 0
-            fi
-            echo "HTTP $response — retrying in 10s..."
+            response=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 15 http://${{ env.SERVER_IP }}/)
+            if [ "$response" = "200" ]; then echo "API is up! (HTTP $response)"; exit 0; fi
+            echo "HTTP $response - retrying in 10s..."
             sleep 10
           done
-          echo "❌ Service did not respond after 2 minutes"
-          exit 1
+          echo "Service did not respond after 2 minutes"; exit 1
 
       - name: Health Check - Products
         run: |
           response=$(curl -s http://${{ env.SERVER_IP }}/api/products)
-          if echo "$response" | grep -q "success"; then
-            echo "✅ Products endpoint OK"
-          else
-            echo "❌ Products endpoint failed"
-            echo "$response"
-            exit 1
-          fi
+          if echo "$response" | grep -q "success"; then echo "Products OK"; else echo "Products failed: $response"; exit 1; fi
 
       - name: Deployment Summary
         if: success()
         run: |
           echo "=========================================="
-          echo "✅ DEPLOYMENT SUCCESSFUL!"
-          echo "=========================================="
-          echo "🌐 API:      http://${{ env.SERVER_IP }}"
-          echo "📦 Products: http://${{ env.SERVER_IP }}/api/products"
-          echo "📋 Orders:   http://${{ env.SERVER_IP }}/api/orders"
-          echo "🔐 Auth:     http://${{ env.SERVER_IP }}/api/auth/login"
+          echo "DEPLOYMENT SUCCESSFUL!"
+          echo "http://${{ env.SERVER_IP }}"
           echo "=========================================="
