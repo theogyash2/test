@@ -96,7 +96,16 @@ jobs:
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
           "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\nginx\\nginx.exe')) { Write-Host '📦 Installing Nginx...'; Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\nginx.zip'; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\nginx-1.24.0' 'C:\\nginx' -Force; Write-Host '✅ Nginx installed' } else { Write-Host '✅ Nginx exists' }; if (-not (Test-Path 'C:\\production\\nginx.conf')) { Write-Host '❌ ERROR: nginx.conf not found in repo root!'; exit 1 }; Copy-Item 'C:\\production\\nginx.conf' 'C:\\nginx\\conf\\nginx.conf' -Force; Write-Host '✅ nginx.conf copied and updated'"
+      - name: Install Redis
+        run: |
+          /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
+          "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\Redis\\redis-server.exe')) { Write-Host '[INSTALL] Installing Redis...'; Invoke-WebRequest -Uri 'https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip' -OutFile 'C:\\redis.zip'; Expand-Archive C:\\redis.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\Redis-x64-5.0.14.1' 'C:\\Redis' -Force; Write-Host '[OK] Redis installed' } else { Write-Host '[OK] Redis exists' }"
 
+      - name: Setup Redis Service
+        run: |
+          /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
+          "\$ErrorActionPreference = 'Stop'; \$nssm = 'C:\\nssm\\nssm.exe'; \$svc = Get-Service RedisService -ErrorAction SilentlyContinue; if (\$svc) { Write-Host '[RESTART] Restarting Redis...'; & \$nssm restart RedisService } else { Write-Host '[INSTALL] Installing Redis service...'; & \$nssm install RedisService 'C:\\Redis\\redis-server.exe'; & \$nssm set RedisService Start SERVICE_AUTO_START; & \$nssm start RedisService; Write-Host '[OK] Redis installed' }"
+      
       - name: Setup UnicornMaster Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \

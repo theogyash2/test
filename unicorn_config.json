@@ -20,6 +20,13 @@
       "workers": 2,
       "threads": 4,
       "start_port": 5021
+    },
+    {
+      "name": "worker",
+      "script": "C:\\production\\app\\worker\\celery_app.py",
+      "workers": 2,
+      "threads": 1,
+      "start_port": 5031
     }
   ]
 }

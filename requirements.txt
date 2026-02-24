@@ -6,6 +6,10 @@ waitress==3.0.0
 Flask-SQLAlchemy==3.1.1
 SQLAlchemy==2.0.23
 
+#background jobs
+celery==5.3.4
+redis==5.0.1
+
 # Authentication
 Flask-JWT-Extended==4.6.0
 bcrypt==4.1.2
