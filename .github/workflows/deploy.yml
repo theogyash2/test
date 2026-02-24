@@ -2,7 +2,7 @@ name: Deploy to Production via SSM
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -91,7 +91,7 @@ jobs:
       - name: Install Nginx
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\nginx\\nginx.exe')) { Write-Host '📦 Installing Nginx...'; Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\nginx.zip'; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\nginx-1.24.0' 'C:\\nginx' -Force; Write-Host '✅ Nginx installed' } else { Write-Host '✅ Nginx exists' }; if (-not (Test-Path 'C:\\production\\nginx.conf')) { Write-Host '❌ ERROR: nginx.conf not found in repo root!'; exit 1 }; Copy-Item 'C:\\production\\nginx.conf' 'C:\\nginx\\conf\\nginx.conf' -Force; \$test = & 'C:\\nginx\\nginx.exe' -t -p 'C:\\nginx' 2>&1; if (\$LASTEXITCODE -ne 0) { Write-Host '❌ nginx.conf invalid: ' + \$test; exit 1 }; Write-Host '✅ nginx.conf valid and updated'"
+          "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\nginx\\nginx.exe')) { Write-Host '📦 Installing Nginx...'; Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\nginx.zip'; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\nginx-1.24.0' 'C:\\nginx' -Force; Write-Host '✅ Nginx installed' } else { Write-Host '✅ Nginx exists' }; if (-not (Test-Path 'C:\\production\\nginx.conf')) { Write-Host '❌ ERROR: nginx.conf not found in repo root!'; exit 1 }; Copy-Item 'C:\\production\\nginx.conf' 'C:\\nginx\\conf\\nginx.conf' -Force; Write-Host '✅ nginx.conf copied and updated'"
 
       - name: Setup UnicornMaster Service
         run: |
