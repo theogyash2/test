@@ -56,7 +56,7 @@ jobs:
       - name: Install Python
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\Python313\\python.exe') { Write-Host '✅ Python exists'; exit 0 }; Write-Host '📦 Installing Python...'; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe' -OutFile 'C:\\python_installer.exe'; Start-Process 'C:\\python_installer.exe' -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313' -Wait; Write-Host '✅ Python installed: ' + (& C:\\Python313\\python.exe --version 2>&1)"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\Python313\\python.exe') { Write-Host '[OK] Python exists'; exit 0 }; Write-Host '[INSTALL] Installing Python...'; Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe' -OutFile 'C:\\python_installer.exe'; Start-Process 'C:\\python_installer.exe' -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313' -Wait; Write-Host '[OK] Python installed'"
 
       - name: Install Git
         run: |
@@ -77,7 +77,11 @@ jobs:
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
           "\$ErrorActionPreference = 'Stop'; Write-Host '📦 Installing dependencies...'; & 'C:\\production\\venv\\Scripts\\pip.exe' install --upgrade pip -q; & 'C:\\production\\venv\\Scripts\\pip.exe' install -r C:\\production\\requirements.txt -q; Write-Host '✅ Dependencies installed'"
-
+      - name: Upgrade SQLAlchemy
+        run: |
+          /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
+          "\$ErrorActionPreference = 'Stop'; Write-Host '[INSTALL] Upgrading SQLAlchemy...'; & 'C:\\production\\venv\\Scripts\\pip.exe' install --upgrade sqlalchemy flask-sqlalchemy -q; Write-Host '[OK] SQLAlchemy upgraded'"
+      
       - name: Initialize Database
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
@@ -119,23 +123,23 @@ jobs:
           for i in {1..12}; do
             echo "Attempt $i/12..."
             response=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 15 http://${{ env.SERVER_IP }}/)
-            if [ "$response" = "200" ]; then echo "✅ API is up! (HTTP $response)"; exit 0; fi
+            if [ "$response" = "200" ]; then echo " API is up! (HTTP $response)"; exit 0; fi
             echo "HTTP $response - retrying in 10s..."
             sleep 10
           done
-          echo "❌ Service did not respond after 2 minutes"; exit 1
+          echo " Service did not respond after 2 minutes"; exit 1
 
       - name: Health Check - Products
         run: |
           response=$(curl -s http://${{ env.SERVER_IP }}/api/products)
-          if echo "$response" | grep -q "success"; then echo "✅ Products OK"; else echo "❌ Products failed: $response"; exit 1; fi
+          if echo "$response" | grep -q "success"; then echo " Products OK"; else echo "❌ Products failed: $response"; exit 1; fi
 
       - name: Deployment Summary
         if: success()
         run: |
           echo ""
           echo "=========================================="
-          echo "✅ DEPLOYMENT SUCCESSFUL!"
+          echo " DEPLOYMENT SUCCESSFUL!"
           echo "=========================================="
           echo "🌐 API: http://${{ env.SERVER_IP }}"
           echo "📦 Products: http://${{ env.SERVER_IP }}/api/products"
