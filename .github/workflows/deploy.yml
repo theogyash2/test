@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 env:
-  INSTANCE_ID: i-07fa5b29b2472d0fc
+  INSTANCE_ID: i-01163e594d380977b
   AWS_REGION: ap-south-1
-  SERVER_IP: 3.110.212.186
+  SERVER_IP: 13.233.55.26
 
 jobs:
   setup-and-deploy:
@@ -88,7 +88,7 @@ jobs:
       - name: Install NSSM
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\nssm\\nssm.exe') { Write-Host 'NSSM exists'; exit 0 }; Invoke-WebRequest -Uri 'https://nssm.cc/release/nssm-2.24.zip' -OutFile 'C:\\nssm.zip'; Expand-Archive C:\\nssm.zip -DestinationPath C:\\nssm_tmp -Force; New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null; Copy-Item 'C:\\nssm_tmp\\nssm-2.24\\win64\\nssm.exe' 'C:\\nssm\\nssm.exe'; Remove-Item C:\\nssm_tmp -Recurse -Force; Write-Host 'NSSM installed'"
+          "\$ErrorActionPreference = 'Stop'; if (Test-Path 'C:\\nssm\\nssm.exe') { Write-Host 'NSSM exists'; exit 0 }; if (Test-Path 'C:\\production\\tools\\nssm.exe') { New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null; Copy-Item 'C:\\production\\tools\\nssm.exe' 'C:\\nssm\\nssm.exe'; Write-Host 'NSSM copied from repo' } else { Write-Host 'ERROR: C:\\production\\tools\\nssm.exe not found. Add nssm.exe to tools/ folder in your repo.'; exit 1 }; Write-Host 'NSSM ready'"
 
       - name: Install Nginx
         run: |
