@@ -104,8 +104,7 @@ jobs:
       - name: Setup Redis Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ErrorActionPreference = 'Stop'; \$nssm = 'C:\\nssm\\nssm.exe'; \$svc = Get-Service RedisService -ErrorAction SilentlyContinue; if (\$svc) { Write-Host '[RESTART] Restarting Redis...'; & \$nssm restart RedisService } else { Write-Host '[INSTALL] Installing Redis service...'; & \$nssm install RedisService 'C:\\Redis\\redis-server.exe'; & \$nssm set RedisService Start SERVICE_AUTO_START; & \$nssm start RedisService; Write-Host '[OK] Redis installed' }"
-      
+          "\$ErrorActionPreference = 'Continue'; \$nssm = 'C:\\nssm\\nssm.exe'; \$svc = Get-Service RedisService -ErrorAction SilentlyContinue; if (\$svc) { Write-Host '[RESTART] Restarting Redis...'; & \$nssm restart RedisService; Start-Sleep 3 } else { Write-Host '[INSTALL] Installing Redis service...'; & \$nssm install RedisService 'C:\\Redis\\redis-server.exe' 'C:\\Redis\\redis.windows.conf'; & \$nssm set RedisService AppDirectory 'C:\\Redis'; & \$nssm set RedisService Start SERVICE_AUTO_START; Start-Sleep 2; & \$nssm start RedisService; Start-Sleep 3; Write-Host '[OK] Redis installed' }; \$status = Get-Service RedisService; Write-Host '[STATUS]' \$status.Status"
       - name: Setup UnicornMaster Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
