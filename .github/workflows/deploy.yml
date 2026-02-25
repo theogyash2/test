@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
 env:
-  INSTANCE_ID: i-01163e594d380977b
+  INSTANCE_ID: i-0bddff6ed7b3a173b
   AWS_REGION: ap-south-1
-  SERVER_IP: 13.233.55.26
+  SERVER_IP: 13.234.78.215
 
 jobs:
   setup-and-deploy:
