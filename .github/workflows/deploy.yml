@@ -99,8 +99,8 @@ jobs:
       - name: Install Redis
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
-          "\$ErrorActionPreference = 'Stop'; if (-not (Test-Path 'C:\\Redis\\redis-server.exe')) { Write-Host '[INSTALL] Installing Redis...'; Invoke-WebRequest -Uri 'https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip' -OutFile 'C:\\redis.zip'; Expand-Archive C:\\redis.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\Redis-x64-5.0.14.1' 'C:\\Redis' -Force; Write-Host '[OK] Redis installed' } else { Write-Host '[OK] Redis exists' }"
-
+          "\$ErrorActionPreference = 'Continue'; if (-not (Test-Path 'C:\\Redis\\redis-server.exe')) { Write-Host '[INSTALL] Installing Redis...'; try { Invoke-WebRequest -Uri 'https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip' -OutFile 'C:\\redis.zip' -UseBasicParsing; Expand-Archive C:\\redis.zip -DestinationPath C:\\ -Force; if (Test-Path 'C:\\Redis-x64-5.0.14.1') { Rename-Item 'C:\\Redis-x64-5.0.14.1' 'C:\\Redis' -Force -ErrorAction SilentlyContinue }; Write-Host '[OK] Redis installed' } catch { Write-Host '[ERROR] Redis install failed: ' + \$_.Exception.Message; exit 1 } } else { Write-Host '[OK] Redis exists' }"
+      
       - name: Setup Redis Service
         run: |
           /tmp/ssm_run.sh "${{ env.INSTANCE_ID }}" "${{ env.AWS_REGION }}" \
