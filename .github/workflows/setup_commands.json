@@ -1,0 +1,38 @@
+{
+  "requirements": {
+    "python": {
+      "check": "Test-Path 'C:\\Python313\\python.exe'",
+      "install": "Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe' -OutFile 'C:\\python_installer.exe'; Start-Process 'C:\\python_installer.exe' -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313' -Wait"
+    },
+    "git": {
+      "check": "Test-Path 'C:\\Program Files\\Git\\bin\\git.exe'",
+      "install": "Invoke-WebRequest -Uri 'https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe' -OutFile 'C:\\git_installer.exe'; Start-Process 'C:\\git_installer.exe' -ArgumentList '/VERYSILENT /NORESTART /NOCANCEL /SP-' -Wait"
+    },
+    "nginx": {
+      "check": "Test-Path 'C:\\nginx\\nginx.exe'",
+      "install": "Invoke-WebRequest -Uri 'http://nginx.org/download/nginx-1.24.0.zip' -OutFile 'C:\\nginx.zip'; Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force; Rename-Item 'C:\\nginx-1.24.0' 'C:\\nginx' -Force"
+    },
+    "redis": {
+      "check": "Test-Path 'C:\\Redis\\redis-server.exe'",
+      "install": "Invoke-WebRequest -Uri 'https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip' -OutFile 'C:\\redis.zip' -UseBasicParsing; Expand-Archive C:\\redis.zip -DestinationPath C:\\temp_redis -Force; New-Item -ItemType Directory -Path C:\\Redis -Force | Out-Null; Move-Item C:\\temp_redis\\* C:\\Redis\\ -Force; Remove-Item C:\\temp_redis -Recurse -Force"
+    },
+    "nssm": {
+      "check": "Test-Path 'C:\\nssm\\nssm.exe'",
+      "install": "Copy-Item 'C:\\production\\tools\\nssm.exe' 'C:\\nssm\\nssm.exe' -Force"
+    }
+  },
+  "services": {
+    "UnicornMaster": {
+      "check": "Get-Service UnicornMaster -ErrorAction SilentlyContinue",
+      "install": "C:\\nssm\\nssm.exe install UnicornMaster 'C:\\production\\venv\\Scripts\\python.exe' 'C:\\production\\unicorn_master.py'; C:\\nssm\\nssm.exe set UnicornMaster AppDirectory 'C:\\production'; C:\\nssm\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START; C:\\nssm\\nssm.exe start UnicornMaster"
+    },
+    "NginxService": {
+      "check": "Get-Service NginxService -ErrorAction SilentlyContinue",
+      "install": "C:\\nssm\\nssm.exe install NginxService 'C:\\nginx\\nginx.exe'; C:\\nssm\\nssm.exe set NginxService AppDirectory 'C:\\nginx'; C:\\nssm\\nssm.exe set NginxService Start SERVICE_AUTO_START; C:\\nssm\\nssm.exe start NginxService"
+    },
+    "RedisService": {
+      "check": "Get-Service RedisService -ErrorAction SilentlyContinue",
+      "install": "C:\\nssm\\nssm.exe install RedisService 'C:\\Redis\\redis-server.exe' 'C:\\Redis\\redis.windows.conf'; C:\\nssm\\nssm.exe set RedisService AppDirectory 'C:\\Redis'; C:\\nssm\\nssm.exe set RedisService Start SERVICE_AUTO_START; C:\\nssm\\nssm.exe start RedisService"
+    }
+  }
+}
