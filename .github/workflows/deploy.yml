@@ -34,28 +34,28 @@ jobs:
 
             echo "Waiting for SSM command $COMMAND_ID to complete..." >&2
 
-          while [ $ELAPSED -lt $MAX_WAIT ]; do
-            STATUS=$(aws ssm get-command-invocation \
-              --instance-id "$INSTANCE_ID" \
-              --command-id "$COMMAND_ID" \
-              --query "Status" \
-              --output text \
-              --region $AWS_REGION 2>/dev/null)
+            while [ $ELAPSED -lt $MAX_WAIT ]; do
+              STATUS=$(aws ssm get-command-invocation \
+                --instance-id "$INSTANCE_ID" \
+                --command-id "$COMMAND_ID" \
+                --query "Status" \
+                --output text \
+                --region $AWS_REGION 2>/dev/null)
 
-            if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
-              echo "Command finished with status: $STATUS" >&2
-              echo "$STATUS"   # <-- only this goes to stdout / gets captured
-              return
-            fi
+              if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
+                echo "Command finished with status: $STATUS" >&2
+                echo "$STATUS"
+                return
+              fi
 
-            echo "  Status: $STATUS (${ELAPSED}s elapsed)..." >&2
-            sleep $INTERVAL
-            ELAPSED=$((ELAPSED + INTERVAL))
-          done
+              echo "  Status: $STATUS (${ELAPSED}s elapsed)..." >&2
+              sleep $INTERVAL
+              ELAPSED=$((ELAPSED + INTERVAL))
+            done
 
-          echo "Timed out waiting for SSM command after ${MAX_WAIT}s" >&2
-          echo "TimedOut"
-          
+            echo "Timed out waiting for SSM command after ${MAX_WAIT}s" >&2
+            echo "TimedOut"
+          }
 
           INSTANCES=$(cat instances.json | jq -c '.instances[]')
 
@@ -102,7 +102,6 @@ jobs:
               --output text \
               --region $AWS_REGION)
 
-            # Strip whitespace/newlines
             RESULT=$(echo "$RESULT" | tr -d '[:space:]')
 
             if [ "$RESULT" != "" ]; then
