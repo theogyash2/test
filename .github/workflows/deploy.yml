@@ -32,30 +32,30 @@ jobs:
             local ELAPSED=0
             local INTERVAL=10
 
-            echo "Waiting for SSM command $COMMAND_ID to complete..."
+            echo "Waiting for SSM command $COMMAND_ID to complete..." >&2
 
-            while [ $ELAPSED -lt $MAX_WAIT ]; do
-              STATUS=$(aws ssm get-command-invocation \
-                --instance-id "$INSTANCE_ID" \
-                --command-id "$COMMAND_ID" \
-                --query "Status" \
-                --output text \
-                --region $AWS_REGION 2>/dev/null)
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            STATUS=$(aws ssm get-command-invocation \
+              --instance-id "$INSTANCE_ID" \
+              --command-id "$COMMAND_ID" \
+              --query "Status" \
+              --output text \
+              --region $AWS_REGION 2>/dev/null)
 
-              if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
-                echo "Command finished with status: $STATUS"
-                echo "$STATUS"
-                return
-              fi
+            if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
+              echo "Command finished with status: $STATUS" >&2
+              echo "$STATUS"   # <-- only this goes to stdout / gets captured
+              return
+            fi
 
-              echo "  Status: $STATUS (${ELAPSED}s elapsed)..."
-              sleep $INTERVAL
-              ELAPSED=$((ELAPSED + INTERVAL))
-            done
+            echo "  Status: $STATUS (${ELAPSED}s elapsed)..." >&2
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
 
-            echo "Timed out waiting for SSM command after ${MAX_WAIT}s"
-            echo "TimedOut"
-          }
+          echo "Timed out waiting for SSM command after ${MAX_WAIT}s" >&2
+          echo "TimedOut"
+          
 
           INSTANCES=$(cat instances.json | jq -c '.instances[]')
 
