@@ -25,20 +25,51 @@ jobs:
       
       - name: Deploy to all instances
         run: |
-          # Read instances
+          wait_for_ssm() {
+            local INSTANCE_ID=$1
+            local COMMAND_ID=$2
+            local MAX_WAIT=${3:-60}
+            local ELAPSED=0
+            local INTERVAL=10
+
+            echo "Waiting for SSM command $COMMAND_ID to complete..."
+
+            while [ $ELAPSED -lt $MAX_WAIT ]; do
+              STATUS=$(aws ssm get-command-invocation \
+                --instance-id "$INSTANCE_ID" \
+                --command-id "$COMMAND_ID" \
+                --query "Status" \
+                --output text \
+                --region $AWS_REGION 2>/dev/null)
+
+              if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
+                echo "Command finished with status: $STATUS"
+                echo "$STATUS"
+                return
+              fi
+
+              echo "  Status: $STATUS (${ELAPSED}s elapsed)..."
+              sleep $INTERVAL
+              ELAPSED=$((ELAPSED + INTERVAL))
+            done
+
+            echo "Timed out waiting for SSM command after ${MAX_WAIT}s"
+            echo "TimedOut"
+          }
+
           INSTANCES=$(cat instances.json | jq -c '.instances[]')
-          
+
           for instance in $INSTANCES; do
             NAME=$(echo $instance | jq -r '.name')
             ID=$(echo $instance | jq -r '.instance_id')
             IP=$(echo $instance | jq -r '.server_ip')
-            
+
             echo "=========================================="
             echo "Deploying to $NAME ($IP)"
             echo "=========================================="
-            
-            # Check requirements
-            MISSING=$(aws ssm send-command \
+
+            # --- Check requirements ---
+            CHECK_CMD=$(aws ssm send-command \
               --instance-ids "$ID" \
               --document-name "AWS-RunPowerShellScript" \
               --parameters 'commands=["
@@ -54,35 +85,98 @@ jobs:
                 Write-Output ($missing -join \",\")
               "]' \
               --output text --query "Command.CommandId" --region $AWS_REGION)
-            
-            sleep 15
-            RESULT=$(aws ssm get-command-invocation --instance-id "$ID" --command-id "$MISSING" --query "StandardOutputContent" --output text --region $AWS_REGION)
-            
+
+            echo "Requirements check command ID: $CHECK_CMD"
+
+            FINAL_STATUS=$(wait_for_ssm "$ID" "$CHECK_CMD" 120)
+
+            if [ "$FINAL_STATUS" != "Success" ]; then
+              echo "[FAIL] Requirements check failed on $NAME with status: $FINAL_STATUS"
+              exit 1
+            fi
+
+            RESULT=$(aws ssm get-command-invocation \
+              --instance-id "$ID" \
+              --command-id "$CHECK_CMD" \
+              --query "StandardOutputContent" \
+              --output text \
+              --region $AWS_REGION)
+
+            # Strip whitespace/newlines
+            RESULT=$(echo "$RESULT" | tr -d '[:space:]')
+
             if [ "$RESULT" != "" ]; then
               echo "[SETUP] Missing requirements: $RESULT"
               echo "[SETUP] Running full setup..."
               python3 setup_instance.py "$ID" "$RESULT"
+              SETUP_EXIT=$?
+              if [ $SETUP_EXIT -ne 0 ]; then
+                echo "[FAIL] setup_instance.py failed on $NAME with exit code $SETUP_EXIT"
+                exit 1
+              fi
             else
               echo "[OK] All requirements met"
             fi
-            
-            # Always: Update code and restart
-            echo "[DEPLOY] Updating code..."
-            aws ssm send-command \
+
+            # --- Deploy ---
+            echo "[DEPLOY] Updating code on $NAME..."
+
+            DEPLOY_CMD=$(aws ssm send-command \
               --instance-ids "$ID" \
               --document-name "AWS-RunPowerShellScript" \
               --parameters 'commands=["
                 cd C:\\production
-                & \"C:\\Program Files\\Git\\bin\\git.exe\" pull origin main
-                & C:\\production\\venv\\Scripts\\pip.exe install -r requirements.txt -q
-                & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q
+                & \"C:\\Program Files\\Git\\bin\\git.exe\" pull origin main 2>&1
+                if ($LASTEXITCODE -ne 0) { Write-Error \"git pull failed\"; exit 1 }
+                & C:\\production\\venv\\Scripts\\pip.exe install -r requirements.txt -q 2>&1
+                if ($LASTEXITCODE -ne 0) { Write-Error \"pip install failed\"; exit 1 }
+                & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q 2>&1
+                if ($LASTEXITCODE -ne 0) { Write-Error \"pip upgrade failed\"; exit 1 }
                 Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
-                C:\\nssm\\nssm.exe restart UnicornMaster
-                C:\\nssm\\nssm.exe restart NginxService
+                C:\\nssm\\nssm.exe restart UnicornMaster 2>&1
+                if ($LASTEXITCODE -ne 0) { Write-Error \"UnicornMaster restart failed\"; exit 1 }
+                C:\\nssm\\nssm.exe restart NginxService 2>&1
+                if ($LASTEXITCODE -ne 0) { Write-Error \"NginxService restart failed\"; exit 1 }
                 Start-Sleep 10
-                Write-Host \"[OK] Deployed to $NAME\"
+                Write-Host \"[OK] Deployed successfully\"
               "]' \
-              --region $AWS_REGION
-            
-            echo "[OK] Deployed to $NAME"
+              --output text --query "Command.CommandId" --region $AWS_REGION)
+
+            echo "Deploy command ID: $DEPLOY_CMD"
+
+            FINAL_STATUS=$(wait_for_ssm "$ID" "$DEPLOY_CMD" 300)
+
+            DEPLOY_OUT=$(aws ssm get-command-invocation \
+              --instance-id "$ID" \
+              --command-id "$DEPLOY_CMD" \
+              --query "StandardOutputContent" \
+              --output text \
+              --region $AWS_REGION)
+
+            DEPLOY_ERR=$(aws ssm get-command-invocation \
+              --instance-id "$ID" \
+              --command-id "$DEPLOY_CMD" \
+              --query "StandardErrorContent" \
+              --output text \
+              --region $AWS_REGION)
+
+            echo "--- Output ---"
+            echo "$DEPLOY_OUT"
+
+            if [ -n "$DEPLOY_ERR" ]; then
+              echo "--- Errors ---"
+              echo "$DEPLOY_ERR"
+            fi
+
+            if [ "$FINAL_STATUS" != "Success" ]; then
+              echo "[FAIL] Deploy to $NAME failed with status: $FINAL_STATUS"
+              exit 1
+            fi
+
+            echo "[OK] Successfully deployed to $NAME ($IP)"
+            echo ""
           done
+
+          echo "=========================================="
+          echo "All instances deployed successfully"
+          echo "=========================================="
