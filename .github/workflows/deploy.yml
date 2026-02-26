@@ -120,87 +120,86 @@ jobs:
                 --instance-ids "$ID" \
                 --document-name "AWS-RunPowerShellScript" \
                 --parameters 'commands=["
-                  Write-Host \"[INSTALL] Installing Python...\"
-                  if (!(Test-Path \"C:\\Python313\\python.exe\")) {
-                    Invoke-WebRequest -Uri \"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe\" -OutFile \"C:\\python_installer.exe\"
-                    Start-Process \"C:\\python_installer.exe\" -ArgumentList \"/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313\" -Wait
-                  }
+              Write-Host \"[INSTALL] Installing Python...\"
+              if (!(Test-Path \"C:\\Python313\\python.exe\")) {
+                Invoke-WebRequest -Uri \"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe\" -OutFile \"C:\\python_installer.exe\"
+                Start-Process \"C:\\python_installer.exe\" -ArgumentList \"/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313\" -Wait
+            }
 
-                  Write-Host \"[INSTALL] Installing Git...\"
-                  if (!(Test-Path \"C:\\Program Files\\Git\\bin\\git.exe\")) {
-                    Invoke-WebRequest -Uri \"https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe\" -OutFile \"C:\\git_installer.exe\"
-                    Start-Process \"C:\\git_installer.exe\" -ArgumentList \"/VERYSILENT /NORESTART\" -Wait
-                  }
+              Write-Host \"[INSTALL] Installing Git...\"
+              if (!(Test-Path \"C:\\Program Files\\Git\\bin\\git.exe\")) {
+                Invoke-WebRequest -Uri \"https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe\" -OutFile \"C:\\git_installer.exe\"
+                Start-Process \"C:\\git_installer.exe\" -ArgumentList \"/VERYSILENT /NORESTART\" -Wait
+              }
+                
+              Write-Host \"[INSTALL] Cloning repo...\"
+              if (!(Test-Path \"C:\\production\\.git\")) {
+                & \"C:\\Program Files\\Git\\bin\\git.exe\" clone https://github.com/theogyash2/test.git C:\\production
+              }
 
-                  Write-Host \"[INSTALL] Cloning repo...\"
-                  if (!(Test-Path \"C:\\production\\.git\")) {
-                    & \"C:\\Program Files\\Git\\bin\\git.exe\" clone https://github.com/theogyash2/test.git C:\\production
-                  }
+                Write-Host \"[INSTALL] Setting up venv...\"
+                if (!(Test-Path \"C:\\production\\venv\")) {
+                  & C:\\Python313\\python.exe -m venv C:\\production\\venv
+                  & C:\\production\\venv\\Scripts\\pip.exe install -r C:\\production\\requirements.txt
+                  & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy
+                }
 
-                  Write-Host \"[INSTALL] Setting up venv...\"
-                  if (!(Test-Path \"C:\\production\\venv\")) {
-                    & C:\\Python313\\python.exe -m venv C:\\production\\venv
-                    & C:\\production\\venv\\Scripts\\pip.exe install -r C:\\production\\requirements.txt
-                    & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy
-                  }
+                Write-Host \"[INSTALL] Initializing database...\"
+                if (!(Test-Path \"C:\\production\\database\\ecommerce.db\")) {
+                  & C:\\production\\venv\\Scripts\\python.exe C:\\production\\init_database.py
+                  Write-Host \"[OK] Database initialized\"
+                }
 
-                  Write-Host \"[INSTALL] Initializing database...\"
-                  if (!(Test-Path \"C:\\production\\database\\ecommerce.db\")) {
-                    & C:\\production\\venv\\Scripts\\python.exe C:\\production\\init_database.py
-                    Write-Host \"[OK] Database initialized\"
-                  }
+                Write-Host \"[INSTALL] Copying NSSM...\"
+                if (!(Test-Path \"C:\\nssm\\nssm.exe\")) {
+                  New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null
+                  Copy-Item C:\\production\\tools\\nssm.exe C:\\nssm\\nssm.exe -Force
+                }
 
-                  Write-Host \"[INSTALL] Copying NSSM...\"
-                  if (!(Test-Path \"C:\\nssm\\nssm.exe\")) {
-                    New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null
-                    Copy-Item C:\\production\\tools\\nssm.exe C:\\nssm\\nssm.exe -Force
-                  }
+                Write-Host \"[INSTALL] Installing Nginx...\"
+                if (!(Test-Path \"C:\\nginx\\nginx.exe\")) {
+                  Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile \"C:\\nginx.zip\"
+                  Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force
+                  Rename-Item C:\\nginx-1.24.0 C:\\nginx -Force
+                  Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
+                } 
+                  
+                Write-Host \"[INSTALL] Configuring Windows Firewall...\"
+                \$rule = Get-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -EA SilentlyContinue
+                if (!\$rule) {
+                New-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow | Out-Null
+                Write-Host \"[OK] Firewall rule added\"
+                } else {
+                Write-Host \"[OK] Firewall rule exists\"
+                }
+                
+                Write-Host \"[INSTALL] Installing services...\"
+                if (!(Get-Service UnicornMaster -EA SilentlyContinue)) {
+                  & C:\\nssm\\nssm.exe install UnicornMaster \"C:\\production\\venv\\Scripts\\python.exe\" \"C:\\production\\unicorn_master.py\"
+                  & C:\\nssm\\nssm.exe set UnicornMaster AppDirectory \"C:\\production\"
+                  & C:\\nssm\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
+                  & C:\\nssm\\nssm.exe start UnicornMaster
+                }
+                  
+                if (!(Get-Service NginxService -EA SilentlyContinue)) {
+                & C:\\nssm\\nssm.exe install NginxService \"C:\\nginx\\nginx.exe\"
+                & C:\\nssm\\nssm.exe set NginxService AppDirectory \"C:\\nginx\"
+                & C:\\nssm\\nssm.exe set NginxService Start SERVICE_AUTO_START
+                & C:\\nssm\\nssm.exe start NginxService
+                }
 
-                  Write-Host \"[INSTALL] Installing Nginx...\"
-                  if (!(Test-Path \"C:\\nginx\\nginx.exe\")) {
-                    Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile \"C:\\nginx.zip\"
-                    Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force
-                    Rename-Item C:\\nginx-1.24.0 C:\\nginx -Force
-                    Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
-                  }
+                Write-Host \"[INSTALL] Verifying services...\"
+                Start-Sleep 10
+                \$unicorn = Get-Service UnicornMaster
+                \$nginx = Get-Service NginxService
+                Write-Host \"UnicornMaster: \$(\$unicorn.Status)\"
+                Write-Host \"NginxService: \$(\$nginx.Status)\"
 
-                  Write-Host \"[INSTALL] Configuring Windows Firewall...\"
-                  \$rule = Get-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -EA SilentlyContinue
-                  if (!\$rule) {
-                    New-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow | Out-Null
-                    Write-Host \"[OK] Firewall rule added\"
-                  } else {
-                    Write-Host \"[OK] Firewall rule exists\"
-                  }
-
-                  Write-Host \"[INSTALL] Installing services...\"
-                  if (!(Get-Service UnicornMaster -EA SilentlyContinue)) {
-                    & C:\\nssm\\nssm.exe install UnicornMaster \"C:\\production\\venv\\Scripts\\python.exe\" \"C:\\production\\unicorn_master.py\"
-                    & C:\\nssm\\nssm.exe set UnicornMaster AppDirectory \"C:\\production\"
-                    & C:\\nssm\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
-                    & C:\\nssm\\nssm.exe start UnicornMaster
-                  }
-
-                  if (!(Get-Service NginxService -EA SilentlyContinue)) {
-                    & C:\\nssm\\nssm.exe install NginxService \"C:\\nginx\\nginx.exe\"
-                    & C:\\nssm\\nssm.exe set NginxService AppDirectory \"C:\\nginx\"
-                    & C:\\nssm\\nssm.exe set NginxService Start SERVICE_AUTO_START
-                    & C:\\nssm\\nssm.exe start NginxService
-                  }
-
-                  Write-Host \"[INSTALL] Verifying services...\"
-                  Start-Sleep 10
-                  \$unicorn = Get-Service UnicornMaster
-                  \$nginx = Get-Service NginxService
-                  Write-Host \"UnicornMaster: \$(\$unicorn.Status)\"
-                  Write-Host \"NginxService: \$(\$nginx.Status)\"
-
-                  Write-Host \"[OK] Setup complete\"
+                Write-Host \"[OK] Setup complete\"
                 "]' \
                 --timeout-seconds 600 \
                 --output text --query "Command.CommandId" --region $AWS_REGION)
-
-              echo "Setup command ID: $SETUP_CMD"
+                echo "Setup command ID: $SETUP_CMD"
               wait_for_ssm "$SETUP_CMD" "$ID" || exit 1
             else
               echo "[OK] All requirements met"
@@ -208,7 +207,7 @@ jobs:
 
             # Always: Update code and restart
             echo "[DEPLOY] Updating code on $NAME..."
-            DEPLOY_SCRIPT=$(cat <<'POW'
+                        DEPLOY_SCRIPT=$(cat <<'POW'
             cd C:\production
             & "C:\Program Files\Git\bin\git.exe" pull origin main 2>&1
             if ($LASTEXITCODE -ne 0) { Write-Error "git pull failed"; exit 1 }
@@ -222,11 +221,11 @@ jobs:
             POW
             )
             
-            DEPLOY_CMD=$(aws ssm send-command \
-              --instance-ids "$ID" \
-              --document-name "AWS-RunPowerShellScript" \
-              --parameters "commands=[\"$DEPLOY_SCRIPT\"]" \
-              --output text --query "Command.CommandId" --region $AWS_REGION)
+                        DEPLOY_CMD=$(aws ssm send-command \
+                          --instance-ids "$ID" \
+                          --document-name "AWS-RunPowerShellScript" \
+                          --parameters "commands=[\"$DEPLOY_SCRIPT\"]" \
+                          --output text --query "Command.CommandId" --region $AWS_REGION)
 
             echo "Deploy command ID: $DEPLOY_CMD"
             
