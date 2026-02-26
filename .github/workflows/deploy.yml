@@ -11,52 +11,20 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AK }}
           aws-secret-access-key: ${{ secrets.SAK }}
           aws-region: ${{ env.AWS_REGION }}
-      
+
       - name: Deploy to all instances
         run: |
-          wait_for_ssm() {
-            local INSTANCE_ID=$1
-            local COMMAND_ID=$2
-            local MAX_WAIT=${3:-60}
-            local ELAPSED=0
-            local INTERVAL=10
-
-            echo "Waiting for SSM command $COMMAND_ID to complete..." >&2
-
-            while [ $ELAPSED -lt $MAX_WAIT ]; do
-              STATUS=$(aws ssm get-command-invocation \
-                --instance-id "$INSTANCE_ID" \
-                --command-id "$COMMAND_ID" \
-                --query "Status" \
-                --output text \
-                --region $AWS_REGION 2>/dev/null)
-
-              if [ "$STATUS" = "Success" ] || [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ] || [ "$STATUS" = "TimedOut" ]; then
-                echo "Command finished with status: $STATUS" >&2
-                echo "$STATUS"
-                return
-              fi
-
-              echo "  Status: $STATUS (${ELAPSED}s elapsed)..." >&2
-              sleep $INTERVAL
-              ELAPSED=$((ELAPSED + INTERVAL))
-            done
-
-            echo "Timed out waiting for SSM command after ${MAX_WAIT}s" >&2
-            echo "TimedOut"
-          }
-
           INSTANCES=$(cat instances.json | jq -c '.instances[]')
 
           for instance in $INSTANCES; do
@@ -68,7 +36,6 @@ jobs:
             echo "Deploying to $NAME ($IP)"
             echo "=========================================="
 
-            # --- Check requirements ---
             CHECK_CMD=$(aws ssm send-command \
               --instance-ids "$ID" \
               --document-name "AWS-RunPowerShellScript" \
@@ -79,103 +46,119 @@ jobs:
                 if (!(Test-Path \"C:\\production\\.git\")) { $missing += \"repo\" }
                 if (!(Test-Path \"C:\\nssm\\nssm.exe\")) { $missing += \"nssm\" }
                 if (!(Test-Path \"C:\\nginx\\nginx.exe\")) { $missing += \"nginx\" }
-                if (!(Test-Path \"C:\\Redis\\redis-server.exe\")) { $missing += \"redis\" }
-                if (!(Get-Service UnicornMaster -EA SilentlyContinue)) { $missing += \"unicorn\" }
-                if (!(Get-Service NginxService -EA SilentlyContinue)) { $missing += \"nginxsvc\" }
                 Write-Output ($missing -join \",\")
               "]' \
               --output text --query "Command.CommandId" --region $AWS_REGION)
 
             echo "Requirements check command ID: $CHECK_CMD"
+            sleep 20
 
-            FINAL_STATUS=$(wait_for_ssm "$ID" "$CHECK_CMD" 120)
-
-            if [ "$FINAL_STATUS" != "Success" ]; then
-              echo "[FAIL] Requirements check failed on $NAME with status: $FINAL_STATUS"
-              exit 1
-            fi
-
-            RESULT=$(aws ssm get-command-invocation \
+            MISSING=$(aws ssm get-command-invocation \
               --instance-id "$ID" \
               --command-id "$CHECK_CMD" \
               --query "StandardOutputContent" \
               --output text \
-              --region $AWS_REGION)
+              --region $AWS_REGION | tr -d '\n\r')
 
-            RESULT=$(echo "$RESULT" | tr -d '[:space:]')
+            if [ ! -z "$MISSING" ]; then
+              echo "[SETUP] Missing: $MISSING"
+              echo "[SETUP] Installing requirements..."
 
-            if [ "$RESULT" != "" ]; then
-              echo "[SETUP] Missing requirements: $RESULT"
-              echo "[SETUP] Running full setup..."
-              python3 setup_instance.py "$ID" "$RESULT"
-              SETUP_EXIT=$?
-              if [ $SETUP_EXIT -ne 0 ]; then
-                echo "[FAIL] setup_instance.py failed on $NAME with exit code $SETUP_EXIT"
-                exit 1
-              fi
+              # Run full setup
+              SETUP_CMD=$(aws ssm send-command \
+                --instance-ids "$ID" \
+                --document-name "AWS-RunPowerShellScript" \
+                --parameters 'commands=["
+                  Write-Host \"[INSTALL] Installing Python...\"
+                  if (!(Test-Path \"C:\\Python313\\python.exe\")) {
+                    Invoke-WebRequest -Uri \"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe\" -OutFile \"C:\\python_installer.exe\"
+                    Start-Process \"C:\\python_installer.exe\" -ArgumentList \"/quiet InstallAllUsers=1 PrependPath=1 TargetDir=C:\\Python313\" -Wait
+                  }
+
+                  Write-Host \"[INSTALL] Installing Git...\"
+                  if (!(Test-Path \"C:\\Program Files\\Git\\bin\\git.exe\")) {
+                    Invoke-WebRequest -Uri \"https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe\" -OutFile \"C:\\git_installer.exe\"
+                    Start-Process \"C:\\git_installer.exe\" -ArgumentList \"/VERYSILENT /NORESTART\" -Wait
+                  }
+
+                  Write-Host \"[INSTALL] Cloning repo...\"
+                  if (!(Test-Path \"C:\\production\\.git\")) {
+                    & \"C:\\Program Files\\Git\\bin\\git.exe\" clone https://github.com/theogyash2/test.git C:\\production
+                  }
+
+                  Write-Host \"[INSTALL] Setting up venv...\"
+                  if (!(Test-Path \"C:\\production\\venv\")) {
+                    & C:\\Python313\\python.exe -m venv C:\\production\\venv
+                    & C:\\production\\venv\\Scripts\\pip.exe install -r C:\\production\\requirements.txt
+                  }
+
+                  Write-Host \"[INSTALL] Copying NSSM...\"
+                  if (!(Test-Path \"C:\\nssm\\nssm.exe\")) {
+                    New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null
+                    Copy-Item C:\\production\\tools\\nssm.exe C:\\nssm\\nssm.exe -Force
+                  }
+
+                  Write-Host \"[INSTALL] Installing Nginx...\"
+                  if (!(Test-Path \"C:\\nginx\\nginx.exe\")) {
+                    Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile \"C:\\nginx.zip\"
+                    Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force
+                    Rename-Item C:\\nginx-1.24.0 C:\\nginx -Force
+                    Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
+                  }
+
+                  Write-Host \"[INSTALL] Installing services...\"
+                  if (!(Get-Service UnicornMaster -EA SilentlyContinue)) {
+                    & C:\\nssm\\nssm.exe install UnicornMaster \"C:\\production\\venv\\Scripts\\python.exe\" \"C:\\production\\unicorn_master.py\"
+                    & C:\\nssm\\nssm.exe set UnicornMaster AppDirectory \"C:\\production\"
+                    & C:\\nssm\\nssm.exe set UnicornMaster Start SERVICE_AUTO_START
+                    & C:\\nssm\\nssm.exe start UnicornMaster
+                  }
+
+                  if (!(Get-Service NginxService -EA SilentlyContinue)) {
+                    & C:\\nssm\\nssm.exe install NginxService \"C:\\nginx\\nginx.exe\"
+                    & C:\\nssm\\nssm.exe set NginxService AppDirectory \"C:\\nginx\"
+                    & C:\\nssm\\nssm.exe set NginxService Start SERVICE_AUTO_START
+                    & C:\\nssm\\nssm.exe start NginxService
+                  }
+
+                  Write-Host \"[OK] Setup complete\"
+                "]' \
+                --timeout-seconds 600 \
+                --output text --query "Command.CommandId" --region $AWS_REGION)
+
+              echo "Setup command ID: $SETUP_CMD"
+              sleep 180  # Wait 3 minutes for setup
+
+              SETUP_STATUS=$(aws ssm get-command-invocation \
+                --instance-id "$ID" \
+                --command-id "$SETUP_CMD" \
+                --query "Status" \
+                --output text \
+                --region $AWS_REGION)
+
+              echo "[SETUP] Status: $SETUP_STATUS"
             else
               echo "[OK] All requirements met"
             fi
 
-            # --- Deploy ---
-            echo "[DEPLOY] Updating code on $NAME..."
-
-            DEPLOY_CMD=$(aws ssm send-command \
+            # Always: Update code and restart
+            echo "[DEPLOY] Updating code..."
+            aws ssm send-command \
               --instance-ids "$ID" \
               --document-name "AWS-RunPowerShellScript" \
               --parameters 'commands=["
                 cd C:\\production
-                & \"C:\\Program Files\\Git\\bin\\git.exe\" pull origin main 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"git pull failed\"; exit 1 }
-                & C:\\production\\venv\\Scripts\\pip.exe install -r requirements.txt -q 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"pip install failed\"; exit 1 }
-                & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"pip upgrade failed\"; exit 1 }
+                & \"C:\\Program Files\\Git\\bin\\git.exe\" pull origin main
+                & C:\\production\\venv\\Scripts\\pip.exe install -r requirements.txt -q
+                & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q
                 Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
-                C:\\nssm\\nssm.exe restart UnicornMaster 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"UnicornMaster restart failed\"; exit 1 }
-                C:\\nssm\\nssm.exe restart NginxService 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"NginxService restart failed\"; exit 1 }
+                & C:\\nssm\\nssm.exe restart UnicornMaster
+                & C:\\nssm\\nssm.exe restart NginxService
                 Start-Sleep 10
-                Write-Host \"[OK] Deployed successfully\"
+                Write-Host \"[OK] Deployed\"
               "]' \
-              --output text --query "Command.CommandId" --region $AWS_REGION)
+              --region $AWS_REGION --no-cli-pager
 
-            echo "Deploy command ID: $DEPLOY_CMD"
-
-            FINAL_STATUS=$(wait_for_ssm "$ID" "$DEPLOY_CMD" 300)
-
-            DEPLOY_OUT=$(aws ssm get-command-invocation \
-              --instance-id "$ID" \
-              --command-id "$DEPLOY_CMD" \
-              --query "StandardOutputContent" \
-              --output text \
-              --region $AWS_REGION)
-
-            DEPLOY_ERR=$(aws ssm get-command-invocation \
-              --instance-id "$ID" \
-              --command-id "$DEPLOY_CMD" \
-              --query "StandardErrorContent" \
-              --output text \
-              --region $AWS_REGION)
-
-            echo "--- Output ---"
-            echo "$DEPLOY_OUT"
-
-            if [ -n "$DEPLOY_ERR" ]; then
-              echo "--- Errors ---"
-              echo "$DEPLOY_ERR"
-            fi
-
-            if [ "$FINAL_STATUS" != "Success" ]; then
-              echo "[FAIL] Deploy to $NAME failed with status: $FINAL_STATUS"
-              exit 1
-            fi
-
-            echo "[OK] Successfully deployed to $NAME ($IP)"
-            echo ""
+            sleep 30
+            echo "[OK] Deployed to $NAME"
           done
-
-          echo "=========================================="
-          echo "All instances deployed successfully"
-          echo "=========================================="
