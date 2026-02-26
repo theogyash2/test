@@ -141,6 +141,13 @@ jobs:
                   if (!(Test-Path \"C:\\production\\venv\")) {
                     & C:\\Python313\\python.exe -m venv C:\\production\\venv
                     & C:\\production\\venv\\Scripts\\pip.exe install -r C:\\production\\requirements.txt
+                    & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy
+                  }
+
+                  Write-Host \"[INSTALL] Initializing database...\"
+                  if (!(Test-Path \"C:\\production\\database\\ecommerce.db\")) {
+                    & C:\\production\\venv\\Scripts\\python.exe C:\\production\\init_database.py
+                    Write-Host \"[OK] Database initialized\"
                   }
 
                   Write-Host \"[INSTALL] Copying NSSM...\"
@@ -155,6 +162,15 @@ jobs:
                     Expand-Archive C:\\nginx.zip -DestinationPath C:\\ -Force
                     Rename-Item C:\\nginx-1.24.0 C:\\nginx -Force
                     Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
+                  }
+
+                  Write-Host \"[INSTALL] Configuring Windows Firewall...\"
+                  \$rule = Get-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -EA SilentlyContinue
+                  if (!\$rule) {
+                    New-NetFirewallRule -DisplayName \"Allow HTTP Port 80\" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow | Out-Null
+                    Write-Host \"[OK] Firewall rule added\"
+                  } else {
+                    Write-Host \"[OK] Firewall rule exists\"
                   }
 
                   Write-Host \"[INSTALL] Installing services...\"
@@ -172,6 +188,13 @@ jobs:
                     & C:\\nssm\\nssm.exe start NginxService
                   }
 
+                  Write-Host \"[INSTALL] Verifying services...\"
+                  Start-Sleep 10
+                  \$unicorn = Get-Service UnicornMaster
+                  \$nginx = Get-Service NginxService
+                  Write-Host \"UnicornMaster: \$(\$unicorn.Status)\"
+                  Write-Host \"NginxService: \$(\$nginx.Status)\"
+
                   Write-Host \"[OK] Setup complete\"
                 "]' \
                 --timeout-seconds 600 \
@@ -185,21 +208,24 @@ jobs:
 
             # Always: Update code and restart
             echo "[DEPLOY] Updating code on $NAME..."
+            DEPLOY_SCRIPT=$(cat <<'POW'
+            cd C:\production
+            & "C:\Program Files\Git\bin\git.exe" pull origin main 2>&1
+            if ($LASTEXITCODE -ne 0) { Write-Error "git pull failed"; exit 1 }
+            & C:\production\venv\Scripts\pip.exe install -r requirements.txt -q
+            & C:\production\venv\Scripts\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q
+            Copy-Item C:\production\nginx.conf C:\nginx\conf\nginx.conf -Force
+            & C:\nssm\nssm.exe restart UnicornMaster
+            & C:\nssm\nssm.exe restart NginxService
+            Start-Sleep 15
+            Write-Host "[OK] Deployed to $NAME"
+            POW
+            )
+            
             DEPLOY_CMD=$(aws ssm send-command \
               --instance-ids "$ID" \
               --document-name "AWS-RunPowerShellScript" \
-              --parameters 'commands=["
-                cd C:\\production
-                & \"C:\\Program Files\\Git\\bin\\git.exe\" pull origin main 2>&1
-                if ($LASTEXITCODE -ne 0) { Write-Error \"git pull failed\"; exit 1 }
-                & C:\\production\\venv\\Scripts\\pip.exe install -r requirements.txt -q
-                & C:\\production\\venv\\Scripts\\pip.exe install --upgrade sqlalchemy flask-sqlalchemy -q
-                Copy-Item C:\\production\\nginx.conf C:\\nginx\\conf\\nginx.conf -Force
-                & C:\\nssm\\nssm.exe restart UnicornMaster
-                & C:\\nssm\\nssm.exe restart NginxService
-                Start-Sleep 15
-                Write-Host \"[OK] Deployed to $NAME\"
-              "]' \
+              --parameters "commands=[\"$DEPLOY_SCRIPT\"]" \
               --output text --query "Command.CommandId" --region $AWS_REGION)
 
             echo "Deploy command ID: $DEPLOY_CMD"
