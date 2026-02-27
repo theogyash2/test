@@ -155,7 +155,21 @@ jobs:
                   New-Item -ItemType Directory -Path C:\\nssm -Force | Out-Null
                   Copy-Item C:\\production\\tools\\nssm.exe C:\\nssm\\nssm.exe -Force
                 }
-
+                Write-Host "[INSTALL] Installing Redis..."
+                if (!(Test-Path "C:\Redis\redis-server.exe")) {
+                  Invoke-WebRequest -Uri "https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip" -OutFile "C:\redis.zip"
+                  Expand-Archive C:\redis.zip -DestinationPath C:\temp_redis -Force
+                  New-Item -ItemType Directory -Path C:\Redis -Force | Out-Null
+                  Move-Item C:\temp_redis\* C:\Redis\ -Force
+                  Remove-Item C:\temp_redis -Recurse -Force
+                }
+                if (!(Get-Service RedisService -EA SilentlyContinue)) {
+                  & C:\nssm\nssm.exe install RedisService "C:\Redis\redis-server.exe" "C:\Redis\redis.windows.conf"
+                  & C:\nssm\nssm.exe set RedisService AppDirectory "C:\Redis"
+                  & C:\nssm\nssm.exe set RedisService Start SERVICE_AUTO_START
+                  & C:\nssm\nssm.exe start RedisService
+                }
+                  
                 Write-Host \"[INSTALL] Installing Nginx...\"
                 if (!(Test-Path \"C:\\nginx\\nginx.exe\")) {
                   Invoke-WebRequest -Uri \"http://nginx.org/download/nginx-1.24.0.zip\" -OutFile \"C:\\nginx.zip\"
@@ -192,9 +206,11 @@ jobs:
                 Start-Sleep 10
                 \$unicorn = Get-Service UnicornMaster
                 \$nginx = Get-Service NginxService
+                \$redis = Get-Service RedisService
                 Write-Host \"UnicornMaster: \$(\$unicorn.Status)\"
                 Write-Host \"NginxService: \$(\$nginx.Status)\"
-
+                Write-Host \"RedisService: \$(\$redis.Status)\"
+                
                 Write-Host \"[OK] Setup complete\"
                 "]' \
                 --timeout-seconds 600 \
