@@ -218,7 +218,7 @@ jobs:
             & C:\nssm\nssm.exe restart NginxService
             Start-Sleep 15
             Write-Host "[OK] Deployed to $NAME"
-            POW
+          POW
             )
             
                         DEPLOY_CMD=$(aws ssm send-command \
