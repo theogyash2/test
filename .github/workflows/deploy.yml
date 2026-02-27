@@ -224,8 +224,10 @@ jobs:
                         DEPLOY_CMD=$(aws ssm send-command \
                           --instance-ids "$ID" \
                           --document-name "AWS-RunPowerShellScript" \
-                          --parameters commands="$DEPLOY_SCRIPT" \
-                          --output text --query "Command.CommandId" --region $AWS_REGION)
+                          --parameters "$(jq -n --arg cmd "$DEPLOY_SCRIPT" '{commands: [$cmd]}')" \
+                          --output text \
+                          --query "Command.CommandId" \
+                          --region $AWS_REGION)
 
             echo "Deploy command ID: $DEPLOY_CMD"
             
