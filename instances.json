@@ -4,6 +4,11 @@
       "name": "production",
       "instance_id": "i-090128e7c9357b869",
       "server_ip": "65.0.104.102"
+    },
+    {
+      "name": "production-2",
+      "instance_id": "i-069c21c7959ec7a6d",
+      "server_ip": "13.235.31.64"
     }
   ]
 }
