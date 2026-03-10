@@ -60,8 +60,25 @@ jobs:
               --region $AWS_REGION 2>/dev/null || true
 
             [ "$STATUS" = "Success" ]
-          }
+          
 
+          echo "--- Command Output ---"
+          aws ssm get-command-invocation \
+            --instance-id "$ID" \
+            --command-id "657c7ce6-c849-4dfe-9a9f-3df8d0070f07" \
+            --query "StandardOutputContent" \
+            --output text \
+            --region $AWS_REGION
+
+          echo "--- Command Errors ---"
+          aws ssm get-command-invocation \
+            --instance-id "$ID" \
+            --command-id "657c7ce6-c849-4dfe-9a9f-3df8d0070f07" \
+            --query "StandardErrorContent" \
+            --output text \
+            --region $AWS_REGION
+          }
+            
           INSTANCES=$(cat instances.json | jq -c '.instances[]')
 
           for instance in $INSTANCES; do
