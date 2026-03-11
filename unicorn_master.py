@@ -164,7 +164,7 @@ def generate_nginx_config(workers, config):
         }}\n\n"""
 
     nginx_config += """        location / {
-            return 200 '{"api":"E-Commerce API","status":"running"}';
+            return 200 '{"api":"E-Commerce API","status":" ok"}';
             add_header Content-Type application/json;
         }
     }
