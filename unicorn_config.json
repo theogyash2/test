@@ -3,8 +3,8 @@
     {
       "name": "products",
       "script": "C:\\production\\app\\products\\app.py",
-      "workers": 3,
-      "threads": 2,
+      "workers": 4,
+      "threads": 6,
       "start_port": 5001
     },
     {
