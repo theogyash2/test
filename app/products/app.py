@@ -11,6 +11,7 @@ import os
 import sys
 import os
 from datetime import datetime
+from setup_instance import INSTANCE_NAME
 
 PORT = int(os.getenv("PORT", 5001))
 

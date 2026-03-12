@@ -10,6 +10,7 @@ import os, sys
 from datetime import datetime
 import os
 PORT = int(os.getenv("PORT", 5021))
+from setup_instance import INSTANCE_NAME
 
 sys.path.insert(0, 'C:/production/shared')
 from models import db, User
