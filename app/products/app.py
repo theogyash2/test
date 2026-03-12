@@ -9,16 +9,17 @@ from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 import os
 import sys
+import os
 from datetime import datetime
+
+PORT = int(os.getenv("PORT", 5001))
 
 sys.path.insert(0, 'C:/production/shared')
 from models import db, Product
-from config import config
+# from config import config
 
 # Instance info comes from environment variables
 # Master sets these automatically for each worker
-INSTANCE_NAME = os.environ.get('INSTANCE_NAME', 'Products-1')
-INSTANCE_PORT = int(os.environ.get('INSTANCE_PORT', 5001))
 
 app = Flask(__name__)
 app.config.from_object(config['production'])
@@ -42,7 +43,7 @@ def home():
     return jsonify({
         "service": "Products",
         "instance": INSTANCE_NAME,
-        "port": INSTANCE_PORT,
+        "port": PORT,
         "pid": stats['pid'],
         "requests_handled": stats['requests_handled'],
         "uptime_seconds": (datetime.now() - stats['started_at']).seconds
@@ -138,5 +139,5 @@ def delete_product(product_id):
 
 if __name__ == "__main__":
     from waitress import serve
-    print(f"[{INSTANCE_NAME}] Starting on port {INSTANCE_PORT} (PID: {os.getpid()})")
-    serve(app, host='127.0.0.1', port=INSTANCE_PORT, threads=4, channel_timeout=60)
+    print(f"[{INSTANCE_NAME}] Starting on port {PORT} (PID: {os.getpid()})")
+    serve(app, host='127.0.0.1', port=PORT, threads=4, channel_timeout=60)

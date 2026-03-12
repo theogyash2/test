@@ -1,32 +1,11 @@
 {
   "services": [
-    {
-      "name": "products",
-      "script": "C:\\production\\app\\products\\app.py",
-      "workers": 3,
-      "threads": 2,
-      "start_port": 5001
-    },
-    {
-      "name": "orders",
-      "script": "C:\\production\\app\\orders\\app.py",
-      "workers": 2,
-      "threads": 4,
-      "start_port": 5011
-    },
-    {
-      "name": "users",
-      "script": "C:\\production\\app\\users\\app.py",
-      "workers": 2,
-      "threads": 4,
-      "start_port": 5021
-    },
-    {
-      "name": "worker",
-      "script": "C:\\production\\app\\worker\\celery_app.py",
-      "workers": 2,
-      "threads": 1,
-      "start_port": 5031
-    }
-  ]
+    {"name": "products_0", "script": "app/products/app.py", "port": 5010, "enabled": true},
+    {"name": "products_1", "script": "app/products/app.py", "port": 5011, "enabled": true},
+    {"name": "orders_0", "script": "app/orders/app.py", "port": 5020, "enabled": true},
+    {"name": "orders_1", "script": "app/orders/app.py", "port": 5021, "enabled": true},
+    {"name": "users_0", "script": "app/users/app.py", "port": 5030, "enabled": true},
+    {"name": "users_1", "script": "app/users/app.py", "port": 5031, "enabled": true}
+  ],
+  "restart_delay": 5
 }
