@@ -7,10 +7,9 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 import os, sys
-from setup_instance import INSTANCE_NAME
 from datetime import datetime
 PORT = os.environ.get("PORT", 5011)
-
+INSTANCE_NAME = os.getenv("INSTANCE_NAME", "order-1")
 sys.path.insert(0, 'C:/production/shared')
 from models import db, Order, OrderItem, Product
 # from config import config
@@ -18,11 +17,7 @@ from models import db, Order, OrderItem, Product
 
 
 app = Flask(__name__)
-# app.config.from_object(config['production'])
-app.config['SECRET_KEY'] = 'production-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/production/database/ecommerce.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = 'jwt-secret-key'
+
 db.init_app(app)
 JWTManager(app)
 CORS(app)
