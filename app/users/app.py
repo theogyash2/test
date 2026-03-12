@@ -18,7 +18,11 @@ from models import db, User
 
 
 app = Flask(__name__)
-app.config.from_object(config['production'])
+# app.config.from_object(config['production'])
+app.config['SECRET_KEY'] = 'production-secret-key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/production/database/ecommerce.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = 'jwt-secret-key'
 db.init_app(app)
 JWTManager(app)
 CORS(app)
